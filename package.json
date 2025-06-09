@@ -4,7 +4,8 @@
     "version": "0.0.0",
     "type": "module",
     "scripts": {
-        "dev": "vite",
+        "dev": "vite serve --config vite.dev.config.ts",
+        "prod": "vite build --config vite.prod.config.ts",
         "build": "tsc -b && vite build",
         "lint": "eslint . --fix",
         "prettier": "prettier --write .",
@@ -33,3 +34,4 @@
         "vite": "^6.3.5"
     }
 }
+

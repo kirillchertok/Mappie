@@ -1,0 +1,77 @@
+.btn {
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s linear, border-color 0.3s linear;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}
+
+.btn--default {
+    aspect-ratio: 1 / 1;
+    border-radius: var(--border-radius-md);
+}
+
+.btn--medium {
+    aspect-ratio: 2 / 1;
+    border-radius: var(--border-radius-md);
+}
+
+.btn--large {
+    width: 100%;
+    border-radius: var(--border-radius-lg);
+}
+
+.btn--color_blue {
+    background-color: var(--background-color-blue);
+}
+
+.btn--color_red {
+    background-color: var(--background-color-red);
+}
+
+.btn--color_gray {
+    background-color: var(--background-color-gray);
+}
+
+.btn--color_white {
+    background-color: var(--background-color-white);
+}
+
+.btn--not_pressed {
+    border: var(--border-width-md) solid transparent;
+}
+
+.btn--not_pressed:active {
+    border-color: var(--border-color-light-gray);
+}
+
+.btn--pressed {
+    border: var(--border-width-md) solid var(--border-color-light-gray);
+}
+
+.btn--pressed:active {
+    border-color: transparent;
+}
+
+@media (max-width: 768px) {
+    .btn {
+        height: 45px;
+    }
+}
+
+@media (max-width: 468px) {
+    .btn {
+        height: 35px;
+    }
+}
+
+@media (max-width: 376px) {
+    .btn {
+        height: 30px;
+    }
+}

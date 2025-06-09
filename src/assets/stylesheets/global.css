@@ -1,1 +1,61 @@
 @import './variables.css';
+
+* {
+    box-sizing: var(--box-sizing-base);
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    text-size-adjust: none;
+    color: var(--font-color-black);
+    font-family: var(--font-family-mont);
+}
+*,
+*:before,
+*:after {
+    box-sizing: var(--box-sizing-base);
+}
+
+a {
+    cursor: pointer;
+    text-decoration: none;
+}
+
+html {
+    font-size: var(--font-size-base);
+}
+
+body {
+    background-color: var(--background-color-white);
+    overflow-x: hidden;
+}
+
+.fav_icons {
+    width: 18px;
+    height: 24px;
+}
+.srch_icons {
+    width: 22px;
+    height: 22px;
+}
+.logIn_icons {
+    width: 26px;
+    height: 24px;
+}
+
+@media (max-width: 468px) {
+    .fav_icons {
+        width: 13.5px;
+        height: 18px;
+    }
+    .srch_icons {
+        width: 16.5px;
+        height: 16.5px;
+    }
+    .logIn_icons {
+        width: 19.5px;
+        height: 18px;
+    }
+}

@@ -1,0 +1,50 @@
+:root {
+    --font-family-mont: 'Mont', sans-serif;
+
+    --font-weight-xs: 300;
+    --font-weight-sm: 400;
+    --font-weight-md: 600;
+    --font-weight-lg: 700;
+    --font-weight-xl: 800;
+    --font-weight-xxl: 900;
+
+    --font-size-base: 14px;
+    --font-size-sm: 0.8rem;
+    --font-size-md: 1rem;
+    --font-size-lg: 1.5rem;
+    --font-size-xl: 2rem;
+
+    --font-color-black: rgba(0, 0, 0, 1);
+    --font-color-white: rgba(255, 255, 255, 1);
+    --font-color-gray: rgba(128, 128, 128, 1);
+    --font-color-purple: rgba(64, 95, 123, 1);
+
+    --border-color-light-gray: rgba(196, 196, 196, 1);
+    --border-color-gray: rgba(128, 128, 128, 1);
+
+    --border-width-sm: 2px;
+    --border-width-md: 3px;
+    --border-width-lg: 4px;
+
+    --border-radius-sm: 3px;
+    --border-radius-md: 6px;
+    --border-radius-lg: 10px;
+    --border-radius-circle: 50%;
+
+    --spacing-none: 0;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+
+    --box-sizing-base: border-box;
+
+    --background-color-white: rgba(255, 255, 255, 1);
+    --background-color-blue: rgba(94, 123, 199, 1);
+    --background-color-red: rgba(199, 94, 94, 1);
+    --background-color-gray: rgba(128, 128, 128, 1);
+
+    --screen-size-lg: 1024px;
+    --screen-size-md: 768px;
+    --screen-size-sm: 468px;
+    --screen-size-xs: 375px;
+}

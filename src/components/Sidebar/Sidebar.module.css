@@ -1,4 +1,6 @@
 .sidebar {
+    position: relative;
+    z-index: 20;
     width: 110px;
     height: 100vh;
     background-color: var(--background-color-white);

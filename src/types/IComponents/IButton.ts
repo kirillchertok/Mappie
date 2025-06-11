@@ -1,13 +1,13 @@
 import type React from 'react';
 import type { ButtonHTMLAttributes } from 'react';
 
-type variant = 'pressed' | 'not_pressed';
-type size = 'default' | 'medium' | 'large';
-type backgroundColor = 'blue' | 'red' | 'gray';
+type Variant = 'pressed' | 'not_pressed' | 'no_diff';
+type Size = 'default' | 'medium' | 'large' | 'small';
+type BackgroundColor = 'blue' | 'red' | 'gray' | 'transparent';
 
 export interface IButton extends ButtonHTMLAttributes<HTMLButtonElement> {
-    variant?: variant;
-    size?: size;
-    backgroundColor?: backgroundColor;
+    variant?: Variant;
+    size?: Size;
+    backgroundColor?: BackgroundColor;
     children: React.ReactNode;
 }

@@ -11,6 +11,7 @@
     text-size-adjust: none;
     color: var(--font-color-black);
     font-family: var(--font-family-mont);
+    font-weight: var(--font-weight-md);
 }
 *,
 *:before,
@@ -21,6 +22,16 @@
 a {
     cursor: pointer;
     text-decoration: none;
+}
+
+img {
+    user-select: none;
+}
+
+h1 {
+    margin: var(--spacing-md) 0;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-lg);
 }
 
 html {
@@ -44,6 +55,14 @@ body {
     width: 26px;
     height: 24px;
 }
+.arrow_icons {
+    width: 25px;
+    height: 25px;
+}
+.map_point_icons {
+    width: 16px;
+    height: 20px;
+}
 
 @media (max-width: 468px) {
     .fav_icons {
@@ -57,5 +76,9 @@ body {
     .logIn_icons {
         width: 19.5px;
         height: 18px;
+    }
+    .arrow_icons {
+        width: 18.75px;
+        height: 18.75px;
     }
 }

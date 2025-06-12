@@ -18,7 +18,7 @@
 }
 
 .container--open {
-    left: 110px;
+    left: 100px;
 }
 .container--closed {
     left: -440px;

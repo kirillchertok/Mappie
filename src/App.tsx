@@ -15,10 +15,8 @@ export const App = () => {
 
     useEffect(() => {
         const getLocation = async () => {
-            const [lat, lng] = await getUserCoordinates();
-            setCoordinates([lat, lng]);
-
-            console.log(`Широта: ${lat}, Долгота: ${lng}`);
+            const coordinates = await getUserCoordinates();
+            setCoordinates(coordinates);
         };
 
         getLocation();
@@ -26,7 +24,7 @@ export const App = () => {
 
     return (
         <>
-            <main style={{ background: 'green' }}>
+            <main>
                 <Sidebar />
                 <Panel />
                 <Map center={coordinates} />

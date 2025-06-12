@@ -9,19 +9,10 @@ export async function getUserCoordinates(): Promise<LatLngExpression> {
             return;
         }
 
-        navigator.geolocation.getCurrentPosition(
-            position => {
-                const { latitude, longitude } = position.coords;
-                resolve([latitude, longitude]);
-            },
-            () => {
-                resolve(BASE_COORDINATES);
-            },
-            {
-                enableHighAccuracy: true,
-                timeout: 10000,
-                maximumAge: 0,
-            }
-        );
+        navigator.geolocation.getCurrentPosition(position => {
+            const { latitude, longitude } = position.coords;
+            console.log(latitude, longitude);
+            resolve([latitude, longitude] as LatLngExpression);
+        });
     });
 }

@@ -12,6 +12,8 @@ interface GoogleCredentialResponse {
 }
 
 export const GoogleLoginButton = () => {
+    const CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID_AUTH;
+
     const handleCredentialResponse = useCallback((response: GoogleCredentialResponse) => {
         const decoded: GoogleJwtPayload = jwtDecode(response.credential);
         console.log('Google user:', decoded);
@@ -19,7 +21,7 @@ export const GoogleLoginButton = () => {
 
     useEffect(() => {
         window.google.accounts.id.initialize({
-            client_id: '409280008868-edptgf61r3h049368u6e2m2dgj4n1fkq.apps.googleusercontent.com',
+            client_id: CLIENT_ID,
             callback: handleCredentialResponse,
         });
 
@@ -28,7 +30,7 @@ export const GoogleLoginButton = () => {
             theme: 'outline',
             size: 'large',
         });
-    }, [handleCredentialResponse]);
+    }, [handleCredentialResponse, CLIENT_ID]);
 
     return <div id='google-button' />;
 };

@@ -2,6 +2,7 @@ import type { LatLngExpression } from 'leaflet';
 
 import { Map } from '@/components/Map/Map';
 import { Panel } from '@/components/Panel/Panel';
+import { RouteInfo } from '@/components/RouteInfo/RouteInfo';
 import { Sidebar } from '@/components/Sidebar/Sidebar';
 import { useLocation } from '@/hooks/useLocation';
 import { useAppDispatch } from '@/store/hooks';
@@ -20,6 +21,7 @@ export const Home = () => {
                 <Sidebar />
                 <Panel />
                 <Map />
+                <RouteInfo />
             </main>
         </>
     );

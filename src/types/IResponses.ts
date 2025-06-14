@@ -1,4 +1,4 @@
-interface OverpassElement {
+interface IOverpassElement {
     type: string;
     id: number;
     lat: number;
@@ -16,7 +16,7 @@ interface OverpassElement {
     };
 }
 
-interface WikidataResponse {
+interface IWikidataResponse {
     entities: {
         [id: string]: {
             descriptions?: {
@@ -37,4 +37,17 @@ interface WikidataResponse {
     };
 }
 
-export type { OverpassElement, WikidataResponse };
+interface IOSRMResponse {
+    routes: [
+        {
+            duration: number;
+            distance: number;
+        }
+    ];
+}
+
+export type {
+    IOSRMResponse as OSRMResponse,
+    IOverpassElement as OverpassElement,
+    IWikidataResponse as WikidataResponse,
+};

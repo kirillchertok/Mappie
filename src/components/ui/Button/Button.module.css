@@ -8,31 +8,38 @@
     transition: transform 0.3s linear, border-color 0.3s linear, background-color 0.3s linear;
     gap: var(--spacing-sm);
     padding: var(--spacing-sm);
+    border-radius: var(--border-radius-md);
 }
 
-.btn:hover {
+.btn:not(.btn--hover):hover {
     transform: scale(1.05);
 }
-.btn:active {
+
+.btn:not(.btn--large):active {
     transform: scale(0.95);
+}
+
+.btn.btn--large:hover {
+    transform: scale(1.02);
+}
+
+.btn.btn--large:active {
+    transform: scale(0.98);
 }
 
 .btn--default {
     height: 50px;
     aspect-ratio: 1 / 1;
-    border-radius: var(--border-radius-md);
 }
 
 .btn--medium {
     height: 50px;
     aspect-ratio: 2 / 1;
-    border-radius: var(--border-radius-md);
 }
 
 .btn--large {
-    height: 50px;
+    height: 40px;
     width: 100%;
-    border-radius: var(--border-radius-lg);
 }
 
 .btn--small {

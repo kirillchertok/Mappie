@@ -1,9 +1,3 @@
-import axios from 'axios';
+export const OVERPASS_API_URL = 'https://maps.mail.ru/osm/tools/overpass/api/interpreter';
 
-export const API_URL = 'https://maps.mail.ru/osm/tools/overpass/api/interpreter';
-
-const $api = axios.create({
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-});
-
-export default $api;
+export const OSRM_API_URL = 'http://router.project-osrm.org/route/v1/driving';

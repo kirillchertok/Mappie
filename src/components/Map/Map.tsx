@@ -6,12 +6,19 @@ import type { IMap } from '@/types/IComponents/IMap';
 
 import { PlaceMarker } from '../PlaceMarker/PlaceMarker';
 import styles from './Map.module.css';
+import { Routing } from './Routing';
 import { UpdateMapCenter } from './UpdateMapCenter';
 
 export const Map = ({ zoom = 16, scrollWheelZoom = true }: IMap) => {
     const center = useAppSelector(state => state.place.coordinates);
     const radius = useAppSelector(state => state.place.radius);
     const places = useAppSelector(state => state.place.places);
+
+    const currentPanel = useAppSelector(state => state.panel.currentPanel);
+
+    const isActive = useAppSelector(state => state.route.isActive);
+    const start = useAppSelector(state => state.route.start);
+    const end = useAppSelector(state => state.route.end);
 
     return (
         <>
@@ -42,14 +49,20 @@ export const Map = ({ zoom = 16, scrollWheelZoom = true }: IMap) => {
                                 data={place}
                             />
                         ))}
-                    {places && (
+                    {(currentPanel === 'search' || places.length > 0) && (
                         <Circle
                             center={center}
                             radius={radius}
-                            pathOptions={{ fillColor: 'blue', color: 'blue', fillOpacity: 0.1 }}
+                            pathOptions={{
+                                fillColor: 'blue',
+                                color: 'blue',
+                                fillOpacity: 0.1,
+                                dashArray: '40, 40',
+                            }}
                         />
                     )}
                     <UpdateMapCenter center={center} />
+                    {isActive && start && end && <Routing />}
                 </MapContainer>
             </div>
             ;

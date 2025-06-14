@@ -11,7 +11,9 @@ export async function getUserCoordinates(): Promise<LatLngExpression> {
 
         navigator.geolocation.getCurrentPosition(position => {
             const { latitude, longitude } = position.coords;
-            resolve([latitude, longitude] as LatLngExpression);
+            const roundedLat = parseFloat(latitude.toFixed(4));
+            const roundedLng = parseFloat(longitude.toFixed(4));
+            resolve([roundedLat, roundedLng] as LatLngExpression);
         });
     });
 }

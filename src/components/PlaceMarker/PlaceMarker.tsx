@@ -1,21 +1,45 @@
 import L, { type LatLngExpression } from 'leaflet';
+import { useState } from 'react';
 import { Marker, Popup } from 'react-leaflet';
 
-import { favoritesIconNotPressed, mapPointIcon } from '@/constants/icons';
+import { favoritesIconNotPressed, favoritesIconPressed, mapPointIcon } from '@/constants/icons';
 import { PLACE_TYPES } from '@/constants/placeTypes';
+import { useGetRoute } from '@/hooks/useGetRoute';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import { addFavorite, removeFavorite } from '@/store/slices/favoritesSlice';
 import type { IPlaceMarker } from '@/types/IComponents/IPlaceMarker';
 
 import { Button } from '../ui/Button/Button';
 import styles from './PlaceMarker.module.css';
 
 export const PlaceMarker = ({ data }: IPlaceMarker) => {
-    const position: LatLngExpression = [data.lat, data.lon];
+    const dispatch = useAppDispatch();
+    const favorites = useAppSelector(state => state.favorites.favorites);
+    const userCoordinates = useAppSelector(state => state.place.coordinates);
+
+    const { getRoute } = useGetRoute();
+
+    const [isFavorite, setIsFavorite] = useState<boolean>(favorites.includes(data));
+
+    const placeCoordinates: LatLngExpression = [data.lat, data.lon];
     const types = PLACE_TYPES.filter(type => data.type.includes(type.normalizedName));
+
+    const favoriteClick = () => {
+        if (isFavorite) {
+            dispatch(removeFavorite(data));
+        } else {
+            dispatch(addFavorite(data));
+        }
+
+        setIsFavorite(prev => !prev);
+    };
+
+    const routeCLick = async () => await getRoute(userCoordinates, placeCoordinates);
 
     return (
         <>
             <Marker
-                position={position}
+                position={placeCoordinates}
                 icon={L.icon({
                     iconUrl: types[0].img.src,
                     iconSize: [30, 30],
@@ -36,15 +60,17 @@ export const PlaceMarker = ({ data }: IPlaceMarker) => {
                         </span>
                         <div className={styles.buttons}>
                             <Button
-                                variant='not_pressed'
+                                variant={isFavorite ? 'pressed' : 'not_pressed'}
                                 size='default'
                                 backgroundColor='red'
+                                onClick={favoriteClick}
                             >
-                                {favoritesIconNotPressed}
+                                {isFavorite ? favoritesIconPressed : favoritesIconNotPressed}
                             </Button>
                             <Button
                                 variant='not_pressed'
                                 size='medium'
+                                onClick={routeCLick}
                             >
                                 {mapPointIcon} Маршрут
                             </Button>

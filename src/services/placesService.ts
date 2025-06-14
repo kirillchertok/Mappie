@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import $api, { API_URL } from '@/api/api';
+import { OVERPASS_API_URL } from '@/api/api';
 import { OSM_TAG_TO_TYPE } from '@/constants/OSMTags';
 import type { IPlace } from '@/types/IPlace';
 import type { IPlaceType } from '@/types/IPlaceType';
@@ -19,13 +19,12 @@ export default class PlacesService {
         const cache = LocalStorageService.getCache({ lat, lon, radius, types });
 
         if (cache) {
-            console.log(cache);
             return cache;
         }
 
         try {
             const query = buildQuery({ lat, lon, radius, types });
-            const response = await $api.get<{ elements: OverpassElement[] }>(API_URL, {
+            const response = await axios.get<{ elements: OverpassElement[] }>(OVERPASS_API_URL, {
                 params: { data: query },
             });
 

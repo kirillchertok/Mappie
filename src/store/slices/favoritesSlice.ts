@@ -5,7 +5,7 @@ import type { IFavoriteSlice } from '@/types/IStore/IFavoritesSlice';
 
 const initialState: IFavoriteSlice = {
     favorites: [],
-    selectedFavorite: null,
+    selectedFavorite: undefined,
 };
 
 const FavoritesSlice = createSlice({
@@ -29,7 +29,7 @@ const FavoritesSlice = createSlice({
         },
 
         deselectFavorite: state => {
-            state.selectedFavorite = null;
+            state.selectedFavorite = undefined;
         },
     },
 });

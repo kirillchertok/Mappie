@@ -7,44 +7,18 @@ import {
     searchIconNotPressed,
     searchIconPressed,
 } from '@/constants/icons';
-import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { setCurrentPanel, setIsOpen } from '@/store/slices/panelSlice';
-import type { PanelType } from '@/types/IStore/IPanelSlice';
+import { usePanelActions } from '@/hooks/usePanelActions';
+import { useAppSelector } from '@/store/hooks';
 
 import styles from './Sidebar.module.css';
 
 export const Sidebar = () => {
-    const dispatch = useAppDispatch();
-
-    const isOpen = useAppSelector(state => state.panel.isOpen);
     const currentPanel = useAppSelector(state => state.panel.currentPanel);
 
-    const close = () => {
-        dispatch(setIsOpen(false));
-        dispatch(setCurrentPanel(''));
-    };
-
-    const buttonClick = (buttonType: PanelType) => {
-        if (isOpen && currentPanel === buttonType) {
-            close();
-            return;
-        }
-        if (isOpen && currentPanel !== buttonType) {
-            close();
-            setTimeout(() => {
-                dispatch(setIsOpen(true));
-                dispatch(setCurrentPanel(buttonType));
-            }, 500);
-            return;
-        }
-        dispatch(setIsOpen(true));
-        dispatch(setCurrentPanel(buttonType));
-    };
+    const { buttonClick } = usePanelActions();
 
     const searchClick = () => buttonClick('search');
-
     const favoriteClick = () => buttonClick('all_favorites');
-
     const logInClick = () => buttonClick('logIn');
 
     return (

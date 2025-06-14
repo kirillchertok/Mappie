@@ -1,9 +1,10 @@
 import { arrowLeftIcon } from '@/constants/icons';
+import { usePanelActions } from '@/hooks/usePanelActions';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { setCurrentPanel, setIsOpen } from '@/store/slices/panelSlice';
-import { choosePanel } from '@/utils/choosePanel';
+import { deselectFavorite } from '@/store/slices/favoritesSlice';
 
 import { Button } from '../ui/Button/Button';
+import { CurrentPanel } from './CurrentPanel';
 import styles from './Panel.module.css';
 
 export const Panel = () => {
@@ -12,9 +13,13 @@ export const Panel = () => {
     const isOpen = useAppSelector(state => state.panel.isOpen);
     const currentPanel = useAppSelector(state => state.panel.currentPanel);
 
+    const { closePanel } = usePanelActions();
+
     const close = () => {
-        dispatch(setIsOpen(false));
-        dispatch(setCurrentPanel(''));
+        if (currentPanel === 'single_favorite') {
+            dispatch(deselectFavorite());
+        }
+        closePanel();
     };
 
     return (
@@ -35,7 +40,7 @@ export const Panel = () => {
                         ]
                     }`}
                 >
-                    {choosePanel(currentPanel)}
+                    <CurrentPanel />
                 </div>
                 <div
                     className={styles.close}

@@ -1,17 +1,22 @@
 import '@/assets/fonts/Mont/stylesheet.css';
 import '@/assets/stylesheets/global.css';
 
-import { Panel } from '@/components/Panel/Panel';
-import { Sidebar } from '@/components/Sidebar/Sidebar';
+import { Route, Routes } from 'react-router-dom';
+
+import { ROUTES } from './constants/routes';
 
 export const App = () => {
     return (
         <>
-            <main style={{ background: 'green' }}>
-                <Sidebar />
-                <Panel />
-            </main>
+            <Routes>
+                {ROUTES.map(({ path, element }) => (
+                    <Route
+                        key={path}
+                        path={path}
+                        element={element}
+                    />
+                ))}
+            </Routes>
         </>
     );
 };
-

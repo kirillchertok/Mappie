@@ -27,7 +27,7 @@ export const FavoriteCard = ({ variant, placeData, ...attrs }: IFavoriteCard) =>
                                     alt={placeData.name}
                                 />
                                 <div className={`${styles.types} ${styles[`types--${variant}`]}`}>
-                                    {placeData.types.map(type => (
+                                    {placeData.type.map(type => (
                                         <span key={generateId()}>{type}</span>
                                     ))}
                                 </div>
@@ -41,7 +41,7 @@ export const FavoriteCard = ({ variant, placeData, ...attrs }: IFavoriteCard) =>
                                 alt={placeData.name}
                             />
                             <div className={`${styles.types} ${styles[`types--${variant}`]}`}>
-                                {placeData.types.map(type => (
+                                {placeData.type.map(type => (
                                     <span key={generateId()}>{type}</span>
                                 ))}
                             </div>

@@ -14,11 +14,16 @@
     },
     "dependencies": {
         "@reduxjs/toolkit": "^2.8.2",
+        "axios": "^1.9.0",
         "jwt-decode": "^4.0.0",
+        "leaflet": "^1.9.4",
         "react": "^19.1.0",
         "react-dom": "^19.1.0",
+        "react-hook-form": "^7.57.0",
         "react-icons": "^5.5.0",
-        "react-redux": "^9.2.0"
+        "react-leaflet": "^5.0.0",
+        "react-redux": "^9.2.0",
+        "react-router-dom": "^7.6.2"
     },
     "devDependencies": {
         "@commitlint/cli": "^19.8.1",
@@ -26,6 +31,7 @@
         "@eslint/js": "^9.25.0",
         "@types/google.accounts": "^0.0.16",
         "@types/jwt-decode": "^3.1.0",
+        "@types/leaflet": "^1.9.18",
         "@types/react": "^19.1.2",
         "@types/react-dom": "^19.1.2",
         "@vitejs/plugin-react": "^4.4.1",

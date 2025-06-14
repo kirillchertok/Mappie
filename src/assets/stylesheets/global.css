@@ -43,6 +43,14 @@ body {
     overflow-x: hidden;
 }
 
+main {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 .fav_icons {
     width: 18px;
     height: 24px;

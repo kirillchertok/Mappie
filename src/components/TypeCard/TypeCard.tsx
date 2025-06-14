@@ -1,16 +1,30 @@
 import { useState } from 'react';
 
+import { useAppDispatch } from '@/store/hooks';
+import { addType, removeType } from '@/store/slices/placeSlice';
 import type { ITypeCard } from '@/types/IComponents/ITypeCard';
 
 import styles from './TypeCard.module.css';
 
 export const TypeCard = ({ type, isSelected }: ITypeCard) => {
+    const dispatch = useAppDispatch();
+
     const [selected, setSelected] = useState<boolean>(isSelected);
+
+    const handleCLick = () => {
+        setSelected(prev => !prev);
+        if (selected) {
+            dispatch(removeType(type));
+        } else {
+            dispatch(addType(type));
+        }
+    };
+
     return (
         <>
             <div
                 className={styles.container}
-                onClick={() => setSelected(prev => !prev)}
+                onClick={handleCLick}
             >
                 <div
                     className={`${styles.img__container} ${

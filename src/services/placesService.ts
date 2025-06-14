@@ -1,17 +1,28 @@
 import axios from 'axios';
 
 import $api, { API_URL } from '@/api/api';
+import { OSM_TAG_TO_TYPE } from '@/constants/OSMTags';
 import type { IPlace } from '@/types/IPlace';
+import type { IPlaceType } from '@/types/IPlaceType';
 import type { OverpassElement, WikidataResponse } from '@/types/IResponses';
 import { buildQuery } from '@/utils/buildQuery';
 
-export default class Places {
+import { LocalStorageService } from './localStorageService';
+
+export default class PlacesService {
     public static async getPlaces(
         lat: number,
         lon: number,
         radius: number,
-        types: string[]
+        types: IPlaceType[]
     ): Promise<IPlace[]> {
+        const cache = LocalStorageService.getCache({ lat, lon, radius, types });
+
+        if (cache) {
+            console.log(cache);
+            return cache;
+        }
+
         try {
             const query = buildQuery({ lat, lon, radius, types });
             const response = await $api.get<{ elements: OverpassElement[] }>(API_URL, {
@@ -45,8 +56,7 @@ export default class Places {
                     return place;
                 })
             );
-
-            console.log(places);
+            LocalStorageService.setCache({ lat, lon, radius, types, places });
             return places;
         } catch (error) {
             console.error('Error in getPlaces:', error);
@@ -55,12 +65,19 @@ export default class Places {
     }
 
     private static extractTypes(tags: Record<string, string | undefined>): string[] {
-        const types: string[] = [];
-        if (tags.tourism) types.push(tags.tourism);
-        if (tags.historic) types.push(tags.historic);
-        if (tags.amenity) types.push(tags.amenity);
-        if (tags.leisure) types.push(tags.leisure);
-        return types;
+        const types: Set<string> = new Set();
+        for (const [tagKey, tagValue] of Object.entries(tags)) {
+            if (tagValue) {
+                const combinedTag = `${tagKey}=${tagValue}`;
+                if (OSM_TAG_TO_TYPE[combinedTag]) {
+                    types.add(OSM_TAG_TO_TYPE[combinedTag]);
+                } else if (OSM_TAG_TO_TYPE[tagKey]) {
+                    types.add(OSM_TAG_TO_TYPE[tagKey]);
+                }
+            }
+        }
+
+        return Array.from(types);
     }
 
     private static async fetchWikidataDescription(wikidataId: string): Promise<string | undefined> {
@@ -68,10 +85,11 @@ export default class Places {
             const response = await axios.get<WikidataResponse>(
                 `/wikidata/w/api.php?action=wbgetentities&ids=${wikidataId}&format=json&props=descriptions&languages=en`
             );
-            return response.data.entities[wikidataId]?.descriptions?.en?.value;
+            const description = response.data.entities[wikidataId]?.descriptions?.en?.value;
+            return description ?? '';
         } catch (error) {
             console.error('Error fetching Wikidata description:', error);
-            return undefined;
+            return '';
         }
     }
 

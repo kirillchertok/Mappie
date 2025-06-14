@@ -11,7 +11,6 @@ export async function getUserCoordinates(): Promise<LatLngExpression> {
 
         navigator.geolocation.getCurrentPosition(position => {
             const { latitude, longitude } = position.coords;
-            console.log(latitude, longitude);
             resolve([latitude, longitude] as LatLngExpression);
         });
     });

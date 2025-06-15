@@ -10,8 +10,7 @@ import { useAppSelector } from '@/store/hooks';
 export const Routing = () => {
     const map = useMap();
 
-    const start = useAppSelector(state => state.route.start);
-    const end = useAppSelector(state => state.route.end);
+    const { start, end } = useAppSelector(state => state.route);
 
     useEffect(() => {
         if (!map || !start || !end) return;

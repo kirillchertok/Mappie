@@ -1,25 +1,30 @@
+import { useNavigate } from 'react-router-dom';
+
 import { Button } from '@/components/ui/Button/Button';
 import {
     favoritesIconNotPressed,
     favoritesIconPressed,
     logInIconNotPressed,
-    logInIconPressed,
     searchIconNotPressed,
     searchIconPressed,
 } from '@/constants/icons';
+import { useAuth } from '@/hooks/useAuth';
 import { usePanelActions } from '@/hooks/usePanelActions';
 import { useAppSelector } from '@/store/hooks';
 
 import styles from './Sidebar.module.css';
 
 export const Sidebar = () => {
+    const navigate = useNavigate();
     const currentPanel = useAppSelector(state => state.panel.currentPanel);
+    const { id, email } = useAppSelector(state => state.user);
 
     const { buttonClick } = usePanelActions();
+    const { logout } = useAuth();
 
     const searchClick = () => buttonClick('search');
     const favoriteClick = () => buttonClick('all_favorites');
-    const logInClick = () => buttonClick('logIn');
+    const authClick = () => navigate('/auth');
 
     return (
         <>
@@ -47,13 +52,27 @@ export const Sidebar = () => {
                                 : favoritesIconNotPressed}
                         </Button>
                     </div>
-                    <Button
-                        variant={currentPanel === 'logIn' ? 'pressed' : 'not_pressed'}
-                        backgroundColor='gray'
-                        onClick={logInClick}
-                    >
-                        {currentPanel === 'logIn' ? logInIconPressed : logInIconNotPressed}
-                    </Button>
+                    {id && email ? (
+                        <>
+                            <Button
+                                onClick={logout}
+                                variant='pressed'
+                                backgroundColor='gray'
+                            >
+                                <span className={styles.user_email}>{email[0].toUpperCase()}</span>
+                            </Button>
+                        </>
+                    ) : (
+                        <>
+                            <Button
+                                variant='not_pressed'
+                                backgroundColor='gray'
+                                onClick={authClick}
+                            >
+                                {logInIconNotPressed}
+                            </Button>
+                        </>
+                    )}
                 </div>
             </aside>
         </>

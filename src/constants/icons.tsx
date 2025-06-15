@@ -1,3 +1,5 @@
+import { IoClose } from 'react-icons/io5';
+
 const searchIconNotPressed = (
     <img
         className='srch_icons'
@@ -102,9 +104,12 @@ const mapPointIcon = (
     />
 );
 
+const backIcon = <IoClose />;
+
 export {
     arrowLeftIcon,
     arrowRightIcon,
+    backIcon,
     favoritesIconGray,
     favoritesIconNotPressed,
     favoritesIconPressed,

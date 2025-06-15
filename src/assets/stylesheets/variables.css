@@ -20,6 +20,7 @@
     --font-color-gray: rgba(128, 128, 128, 1);
     --font-color-dark-gray: rgba(55, 55, 55, 1);
     --font-color-purple: rgba(64, 95, 123, 1);
+    --font-color-error: rgba(255, 0, 0, 1);
 
     --border-color-light-gray: rgba(196, 196, 196, 1);
     --border-color-gray: rgba(128, 128, 128, 1);

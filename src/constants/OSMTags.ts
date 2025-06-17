@@ -1,0 +1,43 @@
+const TYPE_TO_OSM_TAG: Record<string, string[]> = {
+    nature: ['natural'],
+    culture: ['tourism'],
+    history: ['historic'],
+    religion: ['amenity=place_of_worship'],
+    architecture: ['building', 'historic=architecture'],
+    industrial: ['industrial', 'landuse=industrial'],
+    entertainment: ['leisure', 'amenity=cinema', 'amenity=theatre'],
+    sport: ['leisure=sports_centre', 'leisure=stadium', 'leisure=pitch'],
+    transport: ['amenity=bus_station', 'amenity=taxi', 'railway=station'],
+    filling_station: ['amenity=fuel'],
+    shop: ['shop'],
+    food: ['amenity=restaurant', 'amenity=cafe', 'amenity=fast_food'],
+    bank: ['amenity=bank'],
+};
+
+const OSM_TAG_TO_TYPE: Record<string, string> = {
+    natural: 'nature',
+    tourism: 'culture',
+    historic: 'history',
+    'amenity=place_of_worship': 'religion',
+    building: 'architecture',
+    'historic=architecture': 'architecture',
+    industrial: 'industrial',
+    'landuse=industrial': 'industrial',
+    leisure: 'entertainment',
+    'amenity=cinema': 'entertainment',
+    'amenity=theatre': 'entertainment',
+    'leisure=sports_centre': 'sport',
+    'leisure=stadium': 'sport',
+    'leisure=pitch': 'sport',
+    'amenity=bus_station': 'transport',
+    'amenity=taxi': 'transport',
+    'railway=station': 'transport',
+    'amenity=fuel': 'filling_station',
+    shop: 'shop',
+    'amenity=restaurant': 'food',
+    'amenity=cafe': 'food',
+    'amenity=fast_food': 'food',
+    'amenity=bank': 'bank',
+};
+
+export { OSM_TAG_TO_TYPE, TYPE_TO_OSM_TAG };

@@ -1,0 +1,83 @@
+import L, { type LatLngExpression } from 'leaflet';
+import { useState } from 'react';
+import { Marker, Popup } from 'react-leaflet';
+
+import { favoritesIconNotPressed, favoritesIconPressed, mapPointIcon } from '@/constants/icons';
+import { PLACE_TYPES } from '@/constants/placeTypes';
+import { useGetRoute } from '@/hooks/useGetRoute';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import { addFavorite, removeFavorite } from '@/store/slices/favoritesSlice';
+import type { IPlaceMarker } from '@/types/IComponents/IPlaceMarker';
+
+import { Button } from '../ui/Button/Button';
+import styles from './PlaceMarker.module.css';
+
+export const PlaceMarker = ({ data }: IPlaceMarker) => {
+    const dispatch = useAppDispatch();
+    const favorites = useAppSelector(state => state.favorites.favorites);
+    const userCoordinates = useAppSelector(state => state.place.coordinates);
+
+    const { getRoute } = useGetRoute();
+
+    const [isFavorite, setIsFavorite] = useState<boolean>(favorites.includes(data));
+
+    const placeCoordinates: LatLngExpression = [data.lat, data.lon];
+    const types = PLACE_TYPES.filter(type => data.type.includes(type.normalizedName));
+
+    const favoriteClick = () => {
+        if (isFavorite) {
+            dispatch(removeFavorite(data));
+        } else {
+            dispatch(addFavorite(data));
+        }
+
+        setIsFavorite(prev => !prev);
+    };
+
+    const routeCLick = async () => await getRoute(userCoordinates, placeCoordinates);
+
+    return (
+        <>
+            <Marker
+                position={placeCoordinates}
+                icon={L.icon({
+                    iconUrl: types[0].img.src,
+                    iconSize: [30, 30],
+                })}
+            >
+                <Popup>
+                    <div className={styles.container}>
+                        <div className={styles.img__container}>
+                            <img
+                                className={styles.img}
+                                src={data.img.length === 0 ? '/logo.png' : data.img}
+                                alt={`${data.name} image`}
+                            />
+                        </div>
+                        <span className={styles.name}>{data.name}</span>
+                        <span className={styles.description}>
+                            {data.description ?? 'Для этого места нет описания'}
+                        </span>
+                        <div className={styles.buttons}>
+                            <Button
+                                variant={isFavorite ? 'pressed' : 'not_pressed'}
+                                size='default'
+                                backgroundColor='red'
+                                onClick={favoriteClick}
+                            >
+                                {isFavorite ? favoritesIconPressed : favoritesIconNotPressed}
+                            </Button>
+                            <Button
+                                variant='not_pressed'
+                                size='medium'
+                                onClick={routeCLick}
+                            >
+                                {mapPointIcon} Маршрут
+                            </Button>
+                        </div>
+                    </div>
+                </Popup>
+            </Marker>
+        </>
+    );
+};

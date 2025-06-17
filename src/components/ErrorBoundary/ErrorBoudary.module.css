@@ -1,0 +1,20 @@
+.error {
+    background-color: var(--background-color-white);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: var(--border-width-md) solid var(--border-color-error);
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-md);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 200px;
+    min-height: 200px;
+}
+
+.error__message {
+    color: var(--font-color-error);
+}

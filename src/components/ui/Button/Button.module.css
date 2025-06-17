@@ -124,8 +124,13 @@
 }
 
 @media (max-width: 376px) {
+    .btn {
+        font-size: var(--font-size-sm);
+    }
+
     .btn--default {
-        height: 30px;
+        height: 35px;
+        aspect-ratio: 1 / 1;
     }
 
     .btn--medium {
@@ -133,10 +138,18 @@
     }
 
     .btn--large {
-        height: 30px;
+        height: 20px;
     }
 
     .btn--small {
         height: 20px;
+    }
+
+    .btn--not_pressed {
+        border: var(--border-width-sm) solid transparent;
+    }
+
+    .btn--pressed {
+        border: var(--border-width-sm) solid var(--border-color-light-gray);
     }
 }

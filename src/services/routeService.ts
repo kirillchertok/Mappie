@@ -12,19 +12,24 @@ export class RouteService {
         start: LatLngExpression,
         end: LatLngExpression
     ): Promise<IConvertRouteInfoReturn[]> {
-        const latS = convertLat(start).lat;
-        const lonS = convertLat(start).lon;
+        try {
+            const latS = convertLat(start).lat;
+            const lonS = convertLat(start).lon;
 
-        const latE = convertLat(end).lat;
-        const lonE = convertLat(end).lon;
+            const latE = convertLat(end).lat;
+            const lonE = convertLat(end).lon;
 
-        const url = `${OSRM_API_URL}/${lonS},${latS};${lonE},${latE}`;
+            const url = `${OSRM_API_URL}/${lonS},${latS};${lonE},${latE}`;
 
-        const response = await axios.get<OSRMResponse>(url);
+            const response = await axios.get<OSRMResponse>(url);
 
-        const distance = response.data.routes[0].distance;
-        const duration = response.data.routes[0].duration;
+            const distance = response.data.routes[0].distance;
+            const duration = response.data.routes[0].duration;
 
-        return convertRouteIndo({ distance, duration });
+            return convertRouteIndo({ distance, duration });
+        } catch (error) {
+            console.log(error);
+            return [];
+        }
     }
 }

@@ -1,6 +1,6 @@
 .container {
     position: absolute;
-    z-index: 50;
+    z-index: 5;
     bottom: var(--spacing-sm);
     width: 300px;
     height: 120px;
@@ -47,4 +47,33 @@
     font-size: var(--font-size-md);
     font-weight: var(--font-weight-sm);
     color: var(--font-color-purple);
+}
+
+@media (max-width: 468px) {
+    .container--closed {
+        right: -80%;
+    }
+}
+
+@media (max-width: 376px) {
+    .container {
+        width: 200px;
+        height: 100px;
+    }
+
+    .value {
+        font-size: var(--font-size-sm);
+        font-weight: var(--font-weight-lg);
+        color: var(--font-color-purple);
+    }
+
+    .description {
+        font-size: var(--font-size-sm);
+        font-weight: var(--font-weight-md);
+        color: var(--font-color-purple);
+    }
+
+    .container--closed {
+        right: -80%;
+    }
 }

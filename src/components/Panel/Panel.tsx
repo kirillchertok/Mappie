@@ -10,8 +10,7 @@ import styles from './Panel.module.css';
 export const Panel = () => {
     const dispatch = useAppDispatch();
 
-    const isOpen = useAppSelector(state => state.panel.isOpen);
-    const currentPanel = useAppSelector(state => state.panel.currentPanel);
+    const { isOpen, currentPanel } = useAppSelector(state => state.panel);
 
     const { closePanel } = usePanelActions();
 

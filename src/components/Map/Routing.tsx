@@ -31,7 +31,7 @@ export const Routing = () => {
                 addWaypoints: false,
             },
             show: false,
-            //@ts-expect-error works, but TS said that there is no such function createMarker ))
+            //@ts-expect-error Works, but TS said that there is no such function createMarker ))
             createMarker: () => null,
         }).addTo(map);
 

@@ -2,11 +2,9 @@ import { useEffect, useState } from 'react';
 
 import { searchIconField, searchIconNotPressed } from '@/constants/icons';
 import { PLACE_TYPES } from '@/constants/placeTypes';
-import PlacesService from '@/services/placesService';
+import { useSearch } from '@/hooks/useSearch';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { setIsLoading } from '@/store/slices/appSlice';
-import { setFilteredPLaces, setPlaces, setRadius } from '@/store/slices/placeSlice';
-import { convertLat } from '@/utils/convertLat';
+import { setFilteredPLaces } from '@/store/slices/placeSlice';
 import { generateId } from '@/utils/generateId';
 
 import { TypeCard } from '../TypeCard/TypeCard';
@@ -19,32 +17,9 @@ export const Search = () => {
 
     const [query, setQuery] = useState<string>('');
 
-    const placeTypes = useAppSelector(state => state.place.types);
-    const radius = useAppSelector(state => state.place.radius);
-    const places = useAppSelector(state => state.place.places);
-    const coordinates = useAppSelector(state => state.place.coordinates);
+    const { types, radius, places } = useAppSelector(state => state.place);
 
-    const changeRadius = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const value =
-            e.target.value[0] === '0'
-                ? e.target.value.slice(1, e.target.value.length)
-                : e.target.value;
-
-        if (!Number.isNaN(Number(value))) {
-            dispatch(setRadius(Number(value)));
-        }
-    };
-
-    const getPlaces = async () => {
-        const { lat, lon } = convertLat(coordinates);
-        dispatch(setIsLoading(true));
-        const places = await PlacesService.getPlaces(lat, lon, radius, placeTypes);
-        if (places) {
-            dispatch(setPlaces(places));
-            dispatch(setFilteredPLaces(places));
-            dispatch(setIsLoading(false));
-        }
-    };
+    const { changeRadius, getPlaces } = useSearch();
 
     const changeQuery = (e: React.ChangeEvent<HTMLInputElement>) => setQuery(e.target.value);
 
@@ -74,7 +49,7 @@ export const Search = () => {
                                 key={generateId()}
                                 type={type}
                                 isSelected={
-                                    placeTypes.filter(
+                                    types.filter(
                                         typeTmp => typeTmp.normalizedName === type.normalizedName
                                     ).length > 0
                                 }

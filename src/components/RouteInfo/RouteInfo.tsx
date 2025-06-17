@@ -9,9 +9,7 @@ export const RouteInfo = () => {
 
     const isLoading = useAppSelector(state => state.app.isLoading);
 
-    const isActive = useAppSelector(state => state.route.isActive);
-    const distance = useAppSelector(state => state.route.distance);
-    const duration = useAppSelector(state => state.route.duration);
+    const { isActive, distance, duration } = useAppSelector(state => state.route);
 
     const close = () => dispatch(closeRoute());
 

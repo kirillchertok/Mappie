@@ -10,22 +10,16 @@ import { Routing } from './Routing';
 import { UpdateMapCenter } from './UpdateMapCenter';
 
 export const Map = ({ zoom = 16, scrollWheelZoom = true }: IMap) => {
-    const center = useAppSelector(state => state.place.coordinates);
-    const radius = useAppSelector(state => state.place.radius);
-    const filteredPlaces = useAppSelector(state => state.place.filteredPlaces);
-    const places = useAppSelector(state => state.place.places);
+    const { coordinates, radius, filteredPlaces, places } = useAppSelector(state => state.place);
+    const { isActive, start, end } = useAppSelector(state => state.route);
 
     const currentPanel = useAppSelector(state => state.panel.currentPanel);
-
-    const isActive = useAppSelector(state => state.route.isActive);
-    const start = useAppSelector(state => state.route.start);
-    const end = useAppSelector(state => state.route.end);
 
     return (
         <>
             <div className={styles.container}>
                 <MapContainer
-                    center={center}
+                    center={coordinates}
                     zoom={zoom}
                     scrollWheelZoom={scrollWheelZoom}
                     style={{ width: '100%', height: '100%' }}
@@ -35,7 +29,7 @@ export const Map = ({ zoom = 16, scrollWheelZoom = true }: IMap) => {
                         url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
                     />
                     <Marker
-                        position={center}
+                        position={coordinates}
                         icon={L.icon({
                             iconUrl: '/src/assets/images/user_location.png',
                             iconSize: [25, 25],
@@ -52,7 +46,7 @@ export const Map = ({ zoom = 16, scrollWheelZoom = true }: IMap) => {
                         ))}
                     {(currentPanel === 'search' || places.length > 0) && (
                         <Circle
-                            center={center}
+                            center={coordinates}
                             radius={radius}
                             pathOptions={{
                                 fillColor: 'blue',
@@ -62,7 +56,7 @@ export const Map = ({ zoom = 16, scrollWheelZoom = true }: IMap) => {
                             }}
                         />
                     )}
-                    <UpdateMapCenter center={center} />
+                    <UpdateMapCenter center={coordinates} />
                     {isActive && start && end && <Routing />}
                 </MapContainer>
             </div>

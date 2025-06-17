@@ -2,6 +2,7 @@ import { searchIconField, searchIconNotPressed } from '@/constants/icons';
 import { PLACE_TYPES } from '@/constants/placeTypes';
 import PlacesService from '@/services/placesService';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import { setIsLoading } from '@/store/slices/appSlice';
 import { setPlaces, setRadius } from '@/store/slices/placeSlice';
 import { convertLat } from '@/utils/convertLat';
 import { generateId } from '@/utils/generateId';
@@ -31,9 +32,11 @@ export const Search = () => {
 
     const getPlaces = async () => {
         const { lat, lon } = convertLat(coordinates);
+        dispatch(setIsLoading(true));
         const places = await PlacesService.getPlaces(lat, lon, radius, placeTypes);
         if (places) {
             dispatch(setPlaces(places));
+            dispatch(setIsLoading(false));
         }
     };
 

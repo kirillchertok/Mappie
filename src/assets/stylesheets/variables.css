@@ -49,4 +49,5 @@
     --background-color-light-gray: rgba(196, 196, 196, 1);
 
     --background-color-light-gray-translucent: rgba(196, 196, 196, 0.5);
+    --background-color-light-white-translucent: rgba(255, 255, 255, 0.8);
 }

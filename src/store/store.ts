@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 
+import AppReducer from './slices/appSlice';
 import FavoriteReducer from './slices/favoritesSlice';
 import PanelReducer from './slices/panelSlice';
 import PlaceReducer from './slices/placeSlice';
@@ -13,6 +14,7 @@ export const store = configureStore({
         favorites: FavoriteReducer,
         route: RouteReducer,
         user: UserReducer,
+        app: AppReducer,
     },
 });
 

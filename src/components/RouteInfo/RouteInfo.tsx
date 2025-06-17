@@ -7,6 +7,8 @@ import styles from './RouteInfo.module.css';
 export const RouteInfo = () => {
     const dispatch = useAppDispatch();
 
+    const isLoading = useAppSelector(state => state.app.isLoading);
+
     const isActive = useAppSelector(state => state.route.isActive);
     const distance = useAppSelector(state => state.route.distance);
     const duration = useAppSelector(state => state.route.duration);
@@ -17,7 +19,7 @@ export const RouteInfo = () => {
         <>
             <div
                 className={`${styles.container} ${
-                    styles[`container--${isActive ? 'open' : 'closed'}`]
+                    styles[`container--${isActive && !isLoading ? 'open' : 'closed'}`]
                 }`}
             >
                 <div className={styles.info}>

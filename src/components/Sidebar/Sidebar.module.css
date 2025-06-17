@@ -72,3 +72,16 @@
         gap: var(--spacing-sm);
     }
 }
+
+@media (max-width: 468px) {
+    .user_email {
+        font-size: var(--font-size-lg);
+        font-weight: var(--font-weight-md);
+    }
+}
+@media (max-width: 376px) {
+    .user_email {
+        font-size: var(--font-size-md);
+        font-weight: var(--font-weight-md);
+    }
+}

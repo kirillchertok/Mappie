@@ -4,6 +4,6 @@ import { NotFound } from '@/pages/NotFound';
 
 export const ROUTES = [
     { path: '/', element: <Home /> },
-    { path: '/login', element: <Login /> },
+    { path: '/auth', element: <Login /> },
     { path: '*', element: <NotFound /> },
 ];

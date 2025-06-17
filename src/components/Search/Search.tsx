@@ -73,7 +73,11 @@ export const Search = () => {
                             <TypeCard
                                 key={generateId()}
                                 type={type}
-                                isSelected={placeTypes.includes(type)}
+                                isSelected={
+                                    placeTypes.filter(
+                                        typeTmp => typeTmp.normalizedName === type.normalizedName
+                                    ).length > 0
+                                }
                             />
                         ))}
                     </div>

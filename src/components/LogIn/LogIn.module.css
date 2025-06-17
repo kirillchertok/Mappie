@@ -38,3 +38,27 @@
     font-weight: var(--font-weight-lg);
     align-self: flex-start;
 }
+
+@media (max-width: 1024px) {
+    .container {
+        width: 60%;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        width: 60%;
+    }
+}
+
+@media (max-width: 468px) {
+    .container {
+        width: 95%;
+    }
+}
+
+@media (max-width: 376px) {
+    .container {
+        width: 85%;
+    }
+}

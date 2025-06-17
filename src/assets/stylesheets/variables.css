@@ -24,6 +24,7 @@
 
     --border-color-light-gray: rgba(196, 196, 196, 1);
     --border-color-gray: rgba(128, 128, 128, 1);
+    --border-color-error: rgba(255, 0, 0, 1);
 
     --border-width-sm: 2px;
     --border-width-md: 3px;

@@ -8,8 +8,9 @@ import { useNavigate } from 'react-router-dom';
 
 import { auth, provider } from '@/firebase';
 import { useAppDispatch } from '@/store/hooks';
-import { setIsLoading } from '@/store/slices/appSlice';
+import { setAuthError, setIsLoading } from '@/store/slices/appSlice';
 import { removeUser, setUser } from '@/store/slices/userSlice';
+import { getFirebaseAuthErrorMessage } from '@/utils/getFirebaseAuthErrroMessage';
 
 export const useAuth = () => {
     const dispatch = useAppDispatch();
@@ -25,7 +26,9 @@ export const useAuth = () => {
                 navigate('/');
             })
             .catch(error => {
-                console.log(error);
+                dispatch(setIsLoading(false));
+                const message = getFirebaseAuthErrorMessage(error.code);
+                dispatch(setAuthError(message));
             });
     };
 
@@ -39,7 +42,9 @@ export const useAuth = () => {
                 navigate('/');
             })
             .catch(error => {
-                console.log(error);
+                dispatch(setIsLoading(false));
+                const message = getFirebaseAuthErrorMessage(error.code);
+                dispatch(setAuthError(message));
             });
     };
 
@@ -51,7 +56,9 @@ export const useAuth = () => {
                 dispatch(removeUser());
             })
             .catch(error => {
-                console.log(error);
+                dispatch(setIsLoading(false));
+                const message = getFirebaseAuthErrorMessage(error.code);
+                dispatch(setAuthError(message));
             });
     };
 
@@ -65,6 +72,7 @@ export const useAuth = () => {
                 navigate('/');
             })
             .catch(error => {
+                dispatch(setIsLoading(false));
                 console.log(error);
             });
     };

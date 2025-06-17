@@ -1,10 +1,10 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
 
-import { backIcon } from '@/constants/icons';
 import { useAuth } from '@/hooks/useAuth';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import { removeAuthError } from '@/store/slices/appSlice';
 import type { ILoginInputs } from '@/types/IComponents/ILogin';
 
 import { Button } from '../ui/Button/Button';
@@ -13,7 +13,8 @@ import styles from './LogIn.module.css';
 import { schema } from './schema';
 
 export const LogIn = () => {
-    const navigate = useNavigate();
+    const dispatch = useAppDispatch();
+    const authError = useAppSelector(state => state.app.authError);
 
     const [currentOption, setCurrentOption] = useState<boolean>(true);
 
@@ -28,10 +29,11 @@ export const LogIn = () => {
         resolver: yupResolver(schema),
     });
 
-    const changeState = () => setCurrentOption(prev => !prev);
-    const backCLick = () => {
-        reset();
-        navigate('/');
+    const changeState = () => {
+        setCurrentOption(prev => !prev);
+        if (authError) {
+            dispatch(removeAuthError());
+        }
     };
     const submitForm = (data: ILoginInputs) => {
         if (currentOption) {
@@ -45,16 +47,6 @@ export const LogIn = () => {
     return (
         <>
             <div className={styles.container}>
-                <div className={styles.back}>
-                    <Button
-                        variant='no_diff'
-                        size='small'
-                        backgroundColor='transparent'
-                        onClick={backCLick}
-                    >
-                        <span className={styles.back__icon}>{backIcon}</span>
-                    </Button>
-                </div>
                 <h1 className={styles.header}>
                     {currentOption ? 'Вход в аккаунт' : 'Регистрация аккаунта'}
                 </h1>
@@ -111,6 +103,7 @@ export const LogIn = () => {
                     >
                         {currentOption ? 'Войти' : 'Зарегестрироваться'}
                     </Button>
+                    {authError && <span className={styles.errors}>{authError}</span>}
                 </form>
                 <Button
                     variant='not_pressed'

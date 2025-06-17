@@ -12,6 +12,7 @@ import { UpdateMapCenter } from './UpdateMapCenter';
 export const Map = ({ zoom = 16, scrollWheelZoom = true }: IMap) => {
     const center = useAppSelector(state => state.place.coordinates);
     const radius = useAppSelector(state => state.place.radius);
+    const filteredPlaces = useAppSelector(state => state.place.filteredPlaces);
     const places = useAppSelector(state => state.place.places);
 
     const currentPanel = useAppSelector(state => state.panel.currentPanel);
@@ -42,8 +43,8 @@ export const Map = ({ zoom = 16, scrollWheelZoom = true }: IMap) => {
                     >
                         <Popup>Вы здесь</Popup>
                     </Marker>
-                    {places.length > 0 &&
-                        places.map(place => (
+                    {filteredPlaces.length > 0 &&
+                        filteredPlaces.map(place => (
                             <PlaceMarker
                                 key={place.id}
                                 data={place}

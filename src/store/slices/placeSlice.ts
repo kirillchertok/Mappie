@@ -12,6 +12,7 @@ const initialState: IPlaceSlice = {
     radius: 500,
     types: PLACE_TYPES,
     places: [],
+    filteredPlaces: [],
 };
 
 const PlaceSlice = createSlice({
@@ -40,6 +41,11 @@ const PlaceSlice = createSlice({
 
         setPlaces: (state, action: PayloadAction<IPlace[]>) => {
             state.places = action.payload;
+            state.filteredPlaces = action.payload;
+        },
+
+        setFilteredPLaces: (state, action: PayloadAction<IPlace[]>) => {
+            state.filteredPlaces = action.payload;
         },
 
         addPlace: (state, action: PayloadAction<IPlace>) => {
@@ -61,6 +67,7 @@ export const {
     removePlace,
     removeType,
     setCoordinates,
+    setFilteredPLaces,
 } = PlaceSlice.actions;
 
 export default PlaceSlice.reducer;

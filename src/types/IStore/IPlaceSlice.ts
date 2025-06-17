@@ -8,4 +8,5 @@ export interface IPlaceSlice {
     radius: number;
     types: IPlaceType[];
     places: IPlace[];
+    filteredPlaces: IPlace[];
 }

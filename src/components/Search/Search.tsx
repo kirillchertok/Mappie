@@ -1,9 +1,11 @@
+import { useEffect, useState } from 'react';
+
 import { searchIconField, searchIconNotPressed } from '@/constants/icons';
 import { PLACE_TYPES } from '@/constants/placeTypes';
 import PlacesService from '@/services/placesService';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { setIsLoading } from '@/store/slices/appSlice';
-import { setPlaces, setRadius } from '@/store/slices/placeSlice';
+import { setFilteredPLaces, setPlaces, setRadius } from '@/store/slices/placeSlice';
 import { convertLat } from '@/utils/convertLat';
 import { generateId } from '@/utils/generateId';
 
@@ -15,8 +17,11 @@ import styles from './Search.module.css';
 export const Search = () => {
     const dispatch = useAppDispatch();
 
+    const [query, setQuery] = useState<string>('');
+
     const placeTypes = useAppSelector(state => state.place.types);
     const radius = useAppSelector(state => state.place.radius);
+    const places = useAppSelector(state => state.place.places);
     const coordinates = useAppSelector(state => state.place.coordinates);
 
     const changeRadius = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -36,14 +41,27 @@ export const Search = () => {
         const places = await PlacesService.getPlaces(lat, lon, radius, placeTypes);
         if (places) {
             dispatch(setPlaces(places));
+            dispatch(setFilteredPLaces(places));
             dispatch(setIsLoading(false));
         }
     };
 
+    const changeQuery = (e: React.ChangeEvent<HTMLInputElement>) => setQuery(e.target.value);
+
+    useEffect(() => {
+        if (query === '') {
+            dispatch(setFilteredPLaces(places));
+        } else {
+            dispatch(setFilteredPLaces(places.filter(place => place.name.includes(query))));
+        }
+    }, [query, places, dispatch]);
+
     return (
         <>
             <Input
-                placeholder='Место, адрес'
+                value={query}
+                onChange={changeQuery}
+                placeholder='Название места'
                 sizeType='large'
                 icon={searchIconField}
             />

@@ -73,7 +73,8 @@ export const useAuth = () => {
             })
             .catch(error => {
                 dispatch(setIsLoading(false));
-                console.log(error);
+                const message = getFirebaseAuthErrorMessage(error.code);
+                dispatch(setAuthError(message));
             });
     };
 

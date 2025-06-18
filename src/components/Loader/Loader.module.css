@@ -14,7 +14,7 @@
 
 .loader {
     --size: 3em;
-    --color: var(--background-color-blue);
+    --color: var(--background-color-dark-blue);
     --ghost-opacity: 0.1;
     --ghost-color: color-mix(in srgb, currentcolor calc(var(--ghost-opacity) * 100%), transparent);
     animation: loader var(--speed, 0.5s) infinite linear;

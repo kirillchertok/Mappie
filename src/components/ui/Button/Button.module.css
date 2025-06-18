@@ -67,6 +67,11 @@
     color: var(--font-color-gray);
 }
 
+.btn--color_light {
+    background-color: var(--background-color-light);
+    color: var(--font-color-white);
+}
+
 .btn--color_transparent {
     background-color: transparent;
 }

@@ -1,6 +1,8 @@
-import { Home } from '@/pages/Home';
-import { Login } from '@/pages/LogIn';
-import { NotFound } from '@/pages/NotFound';
+import { lazy } from 'react';
+
+const Home = lazy(() => import('@/pages/Home'));
+const Login = lazy(() => import('@/pages/LogIn'));
+const NotFound = lazy(() => import('@/pages/NotFound'));
 
 export const ROUTES = [
     { path: '/', element: <Home /> },

@@ -1,3 +1,6 @@
+import { CiLight } from 'react-icons/ci';
+import { CiDark } from 'react-icons/ci';
+
 const searchIconNotPressed = (
     <img
         className='srch_icons'
@@ -102,12 +105,18 @@ const mapPointIcon = (
     />
 );
 
+const darkThemeIcon = <CiDark />;
+
+const ligthThemeIcon = <CiLight />;
+
 export {
     arrowLeftIcon,
     arrowRightIcon,
+    darkThemeIcon,
     favoritesIconGray,
     favoritesIconNotPressed,
     favoritesIconPressed,
+    ligthThemeIcon,
     logInIconNotPressed,
     logInIconPressed,
     mapPointIcon,

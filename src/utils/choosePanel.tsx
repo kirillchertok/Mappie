@@ -21,6 +21,6 @@ export const choosePanel = (currentPanel: PanelType) => {
         case 'logIn':
             return <LogIn />;
         default:
-            return;
+            return null;
     }
 };

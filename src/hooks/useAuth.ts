@@ -10,7 +10,7 @@ import { auth, provider } from '@/firebase';
 import { useAppDispatch } from '@/store/hooks';
 import { setAuthError, setIsLoading } from '@/store/slices/appSlice';
 import { removeUser, setUser } from '@/store/slices/userSlice';
-import { getFirebaseAuthErrorMessage } from '@/utils/getFirebaseAuthErrroMessage';
+import { getFirebaseAuthErrorMessage } from '@/utils/getFirebaseAuthErrorMessage';
 
 export const useAuth = () => {
     const dispatch = useAppDispatch();

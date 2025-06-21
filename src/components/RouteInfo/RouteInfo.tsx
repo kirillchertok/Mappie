@@ -1,5 +1,8 @@
+import { useState } from 'react';
+
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { closeRoute } from '@/store/slices/routeSlice';
+import { addRoute, removeRoute } from '@/store/slices/routesSlice';
 
 import { Button } from '../ui/Button/Button';
 import styles from './RouteInfo.module.css';
@@ -8,10 +11,27 @@ export const RouteInfo = () => {
     const dispatch = useAppDispatch();
 
     const isLoading = useAppSelector(state => state.app.isLoading);
+    const route = useAppSelector(state => state.route);
+    const routes = useAppSelector(state => state.routes.routes);
 
-    const { isActive, distance, duration } = useAppSelector(state => state.route);
+    const [isSaved, setIsSaved] = useState<boolean>(
+        routes.filter(route => route.route === route.route).length >= 1
+    );
+
+    const isActive = route.isActive;
+    const duration = route.duration;
+    const distance = route.distance;
 
     const close = () => dispatch(closeRoute());
+    const saveClick = () => {
+        if (isSaved) {
+            dispatch(removeRoute(route));
+        } else {
+            dispatch(addRoute(route));
+        }
+
+        setIsSaved(prev => !prev);
+    };
 
     return (
         <>
@@ -38,14 +58,23 @@ export const RouteInfo = () => {
                         <span className={styles.description}>примерное время</span>
                     </div>
                 </div>
-                <Button
-                    variant='not_pressed'
-                    backgroundColor='red'
-                    size='large'
-                    onClick={close}
-                >
-                    Убрать маршурт с карты
-                </Button>
+                <div className={styles.buttons}>
+                    <Button
+                        variant='not_pressed'
+                        backgroundColor='red'
+                        size='large'
+                        onClick={close}
+                    >
+                        Убрать маршурт с карты
+                    </Button>
+                    <Button
+                        variant='not_pressed'
+                        size='large'
+                        onClick={saveClick}
+                    >
+                        {isSaved ? 'Убрать из сохраненных' : 'Сохранить маршрут'}
+                    </Button>
+                </div>
             </div>
         </>
     );

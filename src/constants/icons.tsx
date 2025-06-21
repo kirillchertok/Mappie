@@ -1,113 +1,49 @@
-import { CiLight } from 'react-icons/ci';
-import { CiDark } from 'react-icons/ci';
+import { FaSearch } from 'react-icons/fa';
+import { FaMapMarkerAlt } from 'react-icons/fa';
+import { FaSun } from 'react-icons/fa6';
+import { FaMoon } from 'react-icons/fa6';
+import { FaRoute } from 'react-icons/fa6';
+import { FaPlus } from 'react-icons/fa6';
+import { FaMinus } from 'react-icons/fa6';
+import { FaLocationCrosshairs } from 'react-icons/fa6';
+import { FaBookmark } from 'react-icons/fa6';
+import { FaUser } from 'react-icons/fa6';
+import { IoMdArrowDropleft } from 'react-icons/io';
+import { IoMdArrowDropright } from 'react-icons/io';
 
-const searchIconNotPressed = (
-    <img
-        className='srch_icons'
-        id='srch_np'
-        src='/src/assets/images/srch_np.png'
-        alt='Seacrh icon not pressed'
-    />
-);
+const searchIconNotPressed = <FaSearch color='white' />;
 
-const searchIconPressed = (
-    <img
-        className='srch_icons'
-        id='srch_p'
-        src='/src/assets/images/srch_p.png'
-        alt='Seacrh icon pressed'
-    />
-);
+const searchIconPressed = <FaSearch color='rgba(94, 123, 199, 1)' />;
 
-const searchIconField = (
-    <img
-        className='srch_icons'
-        id='srch_gray'
-        src='/src/assets/images/srch_gray.png'
-        alt='Seacrh icon from input'
-    />
-);
+const searchIconField = <FaSearch color='gray)' />;
 
-const favoritesIconNotPressed = (
-    <img
-        className='fav_icons'
-        id='fav_np'
-        src='/src/assets/images/fav_np.png'
-        alt='Favorite icon not pressed'
-    />
-);
+const favoritesIconNotPressed = <FaBookmark color='white' />;
 
-const favoritesIconPressed = (
-    <img
-        className='fav_icons'
-        id='fav_p'
-        src='/src/assets/images/fav_p.png'
-        alt='favorite icon pressed'
-    />
-);
+const favoritesIconPressed = <FaBookmark color='red' />;
 
-const favoritesIconGray = (
-    <img
-        className='fav_icons'
-        id='fav_gray'
-        src='/src/assets/images/fav_gray.png'
-        alt='favorite icon gray'
-    />
-);
+const favoritesIconGray = <FaBookmark color='gray' />;
 
-const logInIconNotPressed = (
-    <img
-        className='logIn_icons'
-        id='logIn_np'
-        src='/src/assets/images/logIn_np.png'
-        alt='Log in icon not pressed'
-    />
-);
+const logInIconNotPressed = <FaUser color='white' />;
 
-const logInIconPressed = (
-    <svg
-        className='logIn_icons'
-        viewBox='0 0 26 24'
-        fill='none'
-        xmlns='http://www.w3.org/2000/svg'
-    >
-        <path
-            d='M8.78011 17.1457C8.55944 16.8849 8.4491 16.5892 8.4491 16.2585C8.4491 15.9279 8.55944 15.6519 8.78011 15.4304L11.007 13.2035H2.37039C2.02935 13.2035 1.74327 13.088 1.51215 12.8569C1.28104 12.6258 1.16589 12.3401 1.16669 11.9998C1.16669 11.6588 1.28225 11.3727 1.51336 11.1416C1.74447 10.9105 2.03015 10.7953 2.37039 10.7961H11.007L8.78011 8.56928C8.53937 8.32854 8.419 8.04246 8.419 7.71104C8.419 7.37962 8.53937 7.09394 8.78011 6.85401C9.00079 6.61327 9.27684 6.4929 9.60826 6.4929C9.93968 6.4929 10.2153 6.60323 10.4352 6.82391L14.7685 11.1572C14.8889 11.2776 14.9744 11.408 15.0249 11.5484C15.0755 11.6889 15.1004 11.8393 15.0996 11.9998C15.0996 12.1603 15.0747 12.3108 15.0249 12.4512C14.9752 12.5917 14.8897 12.7221 14.7685 12.8424L10.4352 17.1758C10.1945 17.4165 9.9136 17.5268 9.59261 17.5068C9.27163 17.4867 9.00079 17.3663 8.78011 17.1457ZM15.2037 22.8332C14.8627 22.8332 14.577 22.718 14.3467 22.4877C14.1164 22.2574 14.0008 21.9713 14 21.6295C14 21.2884 14.1156 21.0023 14.3467 20.7712C14.5778 20.5401 14.8635 20.425 15.2037 20.4258H22.4259V3.57391H15.2037C14.8627 3.57391 14.5766 3.45836 14.3455 3.22725C14.1144 2.99614 13.9992 2.71046 14 2.37021C14 2.02916 14.1156 1.74308 14.3467 1.51197C14.5778 1.28086 14.8635 1.16571 15.2037 1.16651H22.4259C23.088 1.16651 23.6549 1.40243 24.1268 1.87429C24.5986 2.34614 24.8342 2.91268 24.8334 3.57391V20.4258C24.8334 21.0878 24.5974 21.6547 24.1256 22.1266C23.6537 22.5984 23.0872 22.834 22.4259 22.8332H15.2037Z'
-            fill='gray'
-            stroke='gray'
-        />
-    </svg>
-);
-const arrowLeftIcon = (
-    <img
-        className='arrow_icons'
-        id='arrow_l'
-        src='/src/assets/images/arrow_l.png'
-        alt='Arrow icon left'
-    />
-);
+const logInIconPressed = <FaUser color='black' />;
 
-const arrowRightIcon = (
-    <img
-        className='arrow_icons'
-        id='arrow_r'
-        src='/src/assets/images/arrow_r.png'
-        alt='Arrow icon right'
-    />
-);
+const arrowLeftIcon = <IoMdArrowDropleft color='white' />;
 
-const mapPointIcon = (
-    <img
-        className='map_point_icons'
-        id='map_point'
-        src='/src/assets/images/map_point.png'
-        alt='Map point'
-    />
-);
+const arrowRightIcon = <IoMdArrowDropright color='black' />;
 
-const darkThemeIcon = <CiDark />;
+const mapPointIcon = <FaMapMarkerAlt color='rgba(94, 123, 199, 1)' />;
 
-const ligthThemeIcon = <CiLight />;
+const darkThemeIcon = <FaMoon color='black' />;
+
+const ligthThemeIcon = <FaSun color='white' />;
+
+const routeIcon = <FaRoute color='white' />;
+
+const plusIcon = <FaPlus color='white' />;
+
+const minusIcon = <FaMinus color='white' />;
+
+const locationIcon = <FaLocationCrosshairs color='white' />;
 
 export {
     arrowLeftIcon,
@@ -117,9 +53,13 @@ export {
     favoritesIconNotPressed,
     favoritesIconPressed,
     ligthThemeIcon,
+    locationIcon,
     logInIconNotPressed,
     logInIconPressed,
     mapPointIcon,
+    minusIcon,
+    plusIcon,
+    routeIcon,
     searchIconField,
     searchIconNotPressed,
     searchIconPressed,

@@ -45,6 +45,7 @@
 .user_email {
     font-size: var(--font-size-xl);
     font-weight: var(--font-weight-lg);
+    color: var(--font-color-black);
 }
 
 .theme {
@@ -61,13 +62,37 @@
     color: var(--font-color-black);
 }
 
+.route {
+    font-size: var(--font-size-xl);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.route > * {
+    color: var(--font-color-white);
+}
+
 @media (max-width: 768px) {
     .sidebar {
         width: 90px;
     }
+    .route {
+        font-size: var(--font-size-lg);
+    }
+    .theme {
+        font-size: var(--font-size-lg);
+    }
 }
 
 @media (max-width: 468px) {
+    .user_email {
+        font-size: var(--font-size-lg);
+        font-weight: var(--font-weight-md);
+    }
     .sidebar__logo {
         width: 25px;
         height: 25px;
@@ -85,12 +110,11 @@
     .functions__main {
         gap: var(--spacing-sm);
     }
-}
-
-@media (max-width: 468px) {
-    .user_email {
-        font-size: var(--font-size-lg);
-        font-weight: var(--font-weight-md);
+    .route {
+        font-size: var(--font-size-md);
+    }
+    .theme {
+        font-size: var(--font-size-md);
     }
 }
 @media (max-width: 376px) {

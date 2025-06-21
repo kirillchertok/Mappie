@@ -6,7 +6,7 @@ import { convertLat } from '@/utils/convertLat';
 
 export const useSearch = () => {
     const dispatch = useAppDispatch();
-    const { types, radius, coordinates } = useAppSelector(state => state.place);
+    const { types, radius, userCoordinates: coordinates } = useAppSelector(state => state.place);
 
     const changeRadius = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value =

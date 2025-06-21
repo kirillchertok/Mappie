@@ -5,7 +5,7 @@ import type { IAppSlice, Themes } from '@/types/IStore/IAppSlice';
 const initialState: IAppSlice = {
     isLoading: false,
     authError: null,
-    theme: 'dark',
+    theme: 'light',
 };
 
 const AppSlice = createSlice({

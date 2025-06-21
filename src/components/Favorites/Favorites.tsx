@@ -5,6 +5,7 @@ import { useAppSelector } from '@/store/hooks';
 import type { IPlace } from '@/types/IPlace';
 
 import { FavoriteCard } from '../FavoriteCard/FavoriteCard';
+import { Icon } from '../ui/Icon/Icon';
 import { Input } from '../ui/Input/Input';
 import styles from './Favorites.module.css';
 
@@ -31,7 +32,7 @@ export const Favorites = () => {
                 onChange={changeQuery}
                 placeholder='Название места'
                 sizeType='large'
-                icon={searchIconField}
+                icon={<Icon icon={searchIconField} />}
             />
             <div className={styles.container}>
                 <h1>Избранное: </h1>

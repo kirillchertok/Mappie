@@ -10,12 +10,13 @@ import { addFavorite, removeFavorite } from '@/store/slices/favoritesSlice';
 import type { IPlaceMarker } from '@/types/IComponents/IPlaceMarker';
 
 import { Button } from '../ui/Button/Button';
+import { Icon } from '../ui/Icon/Icon';
 import styles from './PlaceMarker.module.css';
 
 export const PlaceMarker = ({ data }: IPlaceMarker) => {
     const dispatch = useAppDispatch();
     const favorites = useAppSelector(state => state.favorites.favorites);
-    const userCoordinates = useAppSelector(state => state.place.coordinates);
+    const userCoordinates = useAppSelector(state => state.place.userCoordinates);
 
     const { getRoute } = useGetRoute();
 
@@ -65,14 +66,18 @@ export const PlaceMarker = ({ data }: IPlaceMarker) => {
                                 backgroundColor='red'
                                 onClick={favoriteClick}
                             >
-                                {isFavorite ? favoritesIconPressed : favoritesIconNotPressed}
+                                {isFavorite ? (
+                                    <Icon icon={favoritesIconPressed} />
+                                ) : (
+                                    <Icon icon={favoritesIconNotPressed} />
+                                )}
                             </Button>
                             <Button
                                 variant='not_pressed'
                                 size='medium'
                                 onClick={routeCLick}
                             >
-                                {mapPointIcon} Маршрут
+                                <Icon icon={mapPointIcon} /> Маршрут
                             </Button>
                         </div>
                     </div>

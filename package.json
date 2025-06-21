@@ -6,7 +6,7 @@
     "scripts": {
         "dev": "vite serve --config vite.dev.config.ts",
         "prod": "vite build --config vite.prod.config.ts",
-        "build": "tsc -b && vite build",
+        "build": "tsc -b && vite build --config vite.dev.config.ts",
         "lint": "eslint . --fix",
         "prettier": "prettier --write .",
         "preview": "vite preview",

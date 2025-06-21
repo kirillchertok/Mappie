@@ -9,7 +9,7 @@ import { useLocation } from '@/hooks/useLocation';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { setCoordinates } from '@/store/slices/placeSlice';
 
-export const Home = () => {
+const Home = () => {
     const dispatch = useAppDispatch();
 
     const { id, email } = useAppSelector(state => state.user);
@@ -35,3 +35,5 @@ export const Home = () => {
         </>
     );
 };
+
+export default Home;

@@ -1,4 +1,6 @@
 @import './variables.css';
+@import './themes/dark.css';
+@import './themes/light.css';
 
 * {
     box-sizing: var(--box-sizing-base);
@@ -39,8 +41,8 @@ html {
 }
 
 body {
-    background-color: var(--background-color-white);
     overflow-x: hidden;
+    transition: background-color 0.5s linear, color 0.5s linear;
 }
 
 main {

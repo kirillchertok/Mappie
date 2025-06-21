@@ -1,10 +1,11 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
-import type { IAppSlice } from '@/types/IStore/IAppSlice';
+import type { IAppSlice, Themes } from '@/types/IStore/IAppSlice';
 
 const initialState: IAppSlice = {
     isLoading: false,
     authError: null,
+    theme: 'dark',
 };
 
 const AppSlice = createSlice({
@@ -22,9 +23,18 @@ const AppSlice = createSlice({
         removeAuthError: state => {
             state.authError = null;
         },
+
+        setTheme: (state, action: PayloadAction<Themes>) => {
+            state.theme = action.payload;
+        },
+
+        toogleTheme: state => {
+            state.theme = state.theme === 'light' ? 'dark' : 'light';
+        },
     },
 });
 
-export const { setIsLoading, setAuthError, removeAuthError } = AppSlice.actions;
+export const { setIsLoading, setAuthError, removeAuthError, setTheme, toogleTheme } =
+    AppSlice.actions;
 
 export default AppSlice.reducer;

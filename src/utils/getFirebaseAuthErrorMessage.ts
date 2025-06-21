@@ -6,6 +6,8 @@ export const getFirebaseAuthErrorMessage = (code: string): string => {
             return 'Пользователь с таким email уже существует.';
         case 'auth/too-many-requests':
             return 'Слишком много попыток входа. Попробуйте позже.';
+        case 'auth/popup-closed-by-user':
+            return '';
         default:
             return 'Произошла неизвестная ошибка. Попробуйте снова.';
     }

@@ -1,6 +1,6 @@
 import { LogIn } from '@/components/LogIn/LogIn';
 
-export const Login = () => {
+const Login = () => {
     return (
         <>
             <main>
@@ -9,3 +9,5 @@ export const Login = () => {
         </>
     );
 };
+
+export default Login;

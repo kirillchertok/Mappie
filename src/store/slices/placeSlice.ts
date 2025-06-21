@@ -8,7 +8,8 @@ import type { IPlaceType } from '@/types/IPlaceType';
 import type { IPlaceSlice } from '@/types/IStore/IPlaceSlice';
 
 const initialState: IPlaceSlice = {
-    coordinates: BASE_COORDINATES,
+    userCoordinates: BASE_COORDINATES,
+    centerCoordinates: BASE_COORDINATES,
     radius: 500,
     types: PLACE_TYPES,
     places: [],
@@ -20,7 +21,16 @@ const PlaceSlice = createSlice({
     initialState: initialState,
     reducers: {
         setCoordinates: (state, action: PayloadAction<LatLngExpression>) => {
-            state.coordinates = action.payload;
+            state.userCoordinates = action.payload;
+            state.centerCoordinates = action.payload;
+        },
+
+        setUserCoordinates: (state, action: PayloadAction<LatLngExpression>) => {
+            state.userCoordinates = action.payload;
+        },
+
+        setCenterCoordinates: (state, action: PayloadAction<LatLngExpression>) => {
+            state.centerCoordinates = action.payload;
         },
 
         setRadius: (state, action: PayloadAction<number>) => {
@@ -68,6 +78,8 @@ export const {
     removeType,
     setCoordinates,
     setFilteredPLaces,
+    setCenterCoordinates,
+    setUserCoordinates,
 } = PlaceSlice.actions;
 
 export default PlaceSlice.reducer;

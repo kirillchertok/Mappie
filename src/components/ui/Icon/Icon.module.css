@@ -1,0 +1,19 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: var(--font-size-xl);
+}
+
+@media (max-width: 768px) {
+    .container {
+        font-size: var(--font-size-lg);
+    }
+}
+
+@media (max-width: 468px) {
+    .container {
+        font-size: var(--font-size-md);
+    }
+}

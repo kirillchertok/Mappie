@@ -16,6 +16,7 @@ import FavoriteReducer from './slices/favoritesSlice';
 import PanelReducer from './slices/panelSlice';
 import PlaceReducer from './slices/placeSlice';
 import RouteReducer from './slices/routeSlice';
+import RoutesReducer from './slices/routesSlice';
 import UserReducer from './slices/userSlice';
 
 const rootReducer = combineReducers({
@@ -25,6 +26,7 @@ const rootReducer = combineReducers({
     route: RouteReducer,
     user: UserReducer,
     app: AppReducer,
+    routes: RoutesReducer,
 });
 
 const persistConfig = {

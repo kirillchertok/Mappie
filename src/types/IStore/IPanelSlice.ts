@@ -1,4 +1,4 @@
-type PanelType = 'all_favorites' | 'single_favorite' | 'search' | 'logIn' | 'profile' | '';
+type PanelType = 'all_favorites' | 'single_favorite' | 'search' | 'routes' | '';
 
 interface IPanelState {
     isOpen: boolean;

@@ -5,6 +5,7 @@ import { deselectFavorite } from '@/store/slices/favoritesSlice';
 
 import { FavoriteCard } from '../FavoriteCard/FavoriteCard';
 import { Button } from '../ui/Button/Button';
+import { Icon } from '../ui/Icon/Icon';
 import styles from './SelectedFavorite.module.css';
 
 export const SelectedFavorite = () => {
@@ -28,7 +29,7 @@ export const SelectedFavorite = () => {
                     backgroundColor='transparent'
                     onClick={backClick}
                 >
-                    {arrowLeftIcon}
+                    <Icon icon={arrowLeftIcon} />
                 </Button>
                 <h1>Избранное</h1>
             </div>

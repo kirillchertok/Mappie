@@ -11,7 +11,7 @@
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     text-size-adjust: none;
-    color: var(--font-color-black);
+    /* color: var(--font-color-black-my); */
     font-family: var(--font-family-mont);
     font-weight: var(--font-weight-md);
 }
@@ -51,44 +51,4 @@ main {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-}
-
-.fav_icons {
-    width: 18px;
-    height: 24px;
-}
-.srch_icons {
-    width: 22px;
-    height: 22px;
-}
-.logIn_icons {
-    width: 26px;
-    height: 24px;
-}
-.arrow_icons {
-    width: 25px;
-    height: 25px;
-}
-.map_point_icons {
-    width: 16px;
-    height: 20px;
-}
-
-@media (max-width: 468px) {
-    .fav_icons {
-        width: 13.5px;
-        height: 18px;
-    }
-    .srch_icons {
-        width: 16.5px;
-        height: 16.5px;
-    }
-    .logIn_icons {
-        width: 19.5px;
-        height: 18px;
-    }
-    .arrow_icons {
-        width: 18.75px;
-        height: 18.75px;
-    }
 }

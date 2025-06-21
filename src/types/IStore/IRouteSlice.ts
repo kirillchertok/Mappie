@@ -1,11 +1,5 @@
-import type { LatLngExpression } from 'leaflet';
+import type { IRoute } from '../IRoute';
 
-import type { IConvertRouteInfoReturn } from '../IUtils/IConvertRouteInfo';
-
-export interface IRouteSlice {
+export interface IRouteSlice extends IRoute {
     isActive: boolean;
-    start: LatLngExpression | undefined;
-    end: LatLngExpression | undefined;
-    distance: IConvertRouteInfoReturn | undefined;
-    duration: IConvertRouteInfoReturn | undefined;
 }

@@ -4,7 +4,8 @@ import type { IPlace } from '../IPlace';
 import type { IPlaceType } from '../IPlaceType';
 
 export interface IPlaceSlice {
-    coordinates: LatLngExpression;
+    userCoordinates: LatLngExpression;
+    centerCoordinates: LatLngExpression;
     radius: number;
     types: IPlaceType[];
     places: IPlace[];

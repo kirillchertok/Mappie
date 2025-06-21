@@ -1,5 +1,10 @@
 import type { IPlace } from '@/types/IPlace';
 
+const BASE_LAT_LON = {
+    lat: 52.001,
+    lon: 25.001,
+};
+
 const BASE_IMG_URL = '/src/data/base_place.png';
 
 const BASE_TYPES = ['sport', 'history'];
@@ -9,27 +14,39 @@ const BASE_LOREM_DESCRIPTION =
 
 export const DATA: Array<IPlace> = [
     {
+        id: 1,
         name: 'Фантаcмагарический музей им. П.М. Машерова',
         description: BASE_LOREM_DESCRIPTION,
         img: BASE_IMG_URL,
-        types: BASE_TYPES,
+        type: BASE_TYPES,
+        lat: BASE_LAT_LON.lat,
+        lon: BASE_LAT_LON.lon,
     },
     {
+        id: 2,
         name: 'Place2',
         description: BASE_LOREM_DESCRIPTION,
         img: BASE_IMG_URL,
-        types: BASE_TYPES,
+        type: BASE_TYPES,
+        lat: BASE_LAT_LON.lat,
+        lon: BASE_LAT_LON.lon,
     },
     {
+        id: 3,
         name: 'Place3',
         description: BASE_LOREM_DESCRIPTION,
         img: BASE_IMG_URL,
-        types: BASE_TYPES,
+        type: BASE_TYPES,
+        lat: BASE_LAT_LON.lat,
+        lon: BASE_LAT_LON.lon,
     },
     {
+        id: 4,
         name: 'Place4',
         description: BASE_LOREM_DESCRIPTION,
         img: BASE_IMG_URL,
-        types: BASE_TYPES,
+        type: BASE_TYPES,
+        lat: BASE_LAT_LON.lat,
+        lon: BASE_LAT_LON.lon,
     },
 ];

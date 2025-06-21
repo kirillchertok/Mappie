@@ -1,0 +1,27 @@
+.container {
+    width: 100%;
+    height: 420px;
+    border: var(--border-width-md) solid var(--border-color-light-gray);
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-md);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.container span,
+.container h3 {
+    color: var(--font-color-purple);
+}
+
+.highlighted {
+    font-weight: var(--font-weight-xl);
+}
+
+.map_container {
+    width: 100%;
+    height: 100%;
+    border-radius: var(--border-radius-lg);
+    margin: var(--spacing-md) 0;
+}

@@ -7,11 +7,14 @@ import { useMap } from 'react-leaflet';
 
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { setIsLoading } from '@/store/slices/appSlice';
+import { setEndName, setRoute, setStartName } from '@/store/slices/routeSlice';
+import { convertLat } from '@/utils/convertLat';
 
 export const Routing = () => {
     const map = useMap();
     const dispatch = useAppDispatch();
 
+    const places = useAppSelector(state => state.place.places);
     const { start, end } = useAppSelector(state => state.route);
 
     useEffect(() => {
@@ -35,8 +38,25 @@ export const Routing = () => {
             createMarker: () => null,
         }).addTo(map);
 
-        routingControl.on('routesfound', () => {
+        routingControl.on('routesfound', e => {
             dispatch(setIsLoading(false));
+            const route = e.routes[0];
+            const coordinates = route.coordinates.map((coord: L.LatLng) => [coord.lat, coord.lng]);
+
+            dispatch(setRoute(coordinates));
+            const startLat = convertLat(start).lat;
+            const startLon = convertLat(start).lon;
+            const startName = places.find(
+                place => place.lat === startLat && place.lon === startLon
+            )?.name;
+
+            const endLat = convertLat(end).lat;
+            const endLon = convertLat(end).lon;
+            const endName = places.find(
+                place => place.lat === endLat && place.lon === endLon
+            )?.name;
+            dispatch(setStartName(startName ?? start.toString()));
+            dispatch(setEndName(endName ?? end.toString()));
         });
 
         routingControl.on('routingerror', () => {
@@ -48,7 +68,7 @@ export const Routing = () => {
                 map.removeControl(routingControl);
             }
         };
-    }, [map, end, start, dispatch]);
+    }, [map, end, start, dispatch, places]);
 
     return null;
 };

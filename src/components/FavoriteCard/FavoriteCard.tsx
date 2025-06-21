@@ -16,12 +16,13 @@ import type { IFavoriteCard } from '@/types/IComponents/IFavoriteCard';
 import { generateId } from '@/utils/generateId';
 
 import { Button } from '../ui/Button/Button';
+import { Icon } from '../ui/Icon/Icon';
 import styles from './FavoriteCard.module.css';
 
 export const FavoriteCard = ({ variant, placeData, ...attrs }: IFavoriteCard) => {
     const dispatch = useAppDispatch();
 
-    const userCoordinates = useAppSelector(state => state.place.coordinates);
+    const userCoordinates = useAppSelector(state => state.place.userCoordinates);
 
     const { buttonClick } = usePanelActions();
     const { getRoute } = useGetRoute();
@@ -129,21 +130,14 @@ export const FavoriteCard = ({ variant, placeData, ...attrs }: IFavoriteCard) =>
                 <div className={`${styles.buttons} ${styles[`buttons--${variant}`]}`}>
                     {variant === 'small' ? (
                         <>
-                            {/* <Button
-                                variant='no_diff'
-                                size='small'
-                                backgroundColor='transparent'
-                            >
-                                {favoritesIconPressed}
-                            </Button> */}
-                            {favoritesIconPressed}
+                            <Icon icon={favoritesIconPressed} />
                             <Button
                                 variant='no_diff'
                                 size='small'
                                 backgroundColor='transparent'
                                 onClick={goToFavorite}
                             >
-                                {arrowRightIcon}
+                                <Icon icon={arrowRightIcon} />
                             </Button>
                         </>
                     ) : (
@@ -155,9 +149,13 @@ export const FavoriteCard = ({ variant, placeData, ...attrs }: IFavoriteCard) =>
                                 onClick={favoriteCLick}
                             >
                                 {isFavorite ? (
-                                    <>{favoritesIconPressed} Сохранено</>
+                                    <>
+                                        <Icon icon={favoritesIconPressed} /> Сохранено
+                                    </>
                                 ) : (
-                                    <>{favoritesIconNotPressed} Сохранить</>
+                                    <>
+                                        <Icon icon={favoritesIconNotPressed} /> Сохранить
+                                    </>
                                 )}
                             </Button>
                             <Button
@@ -165,7 +163,7 @@ export const FavoriteCard = ({ variant, placeData, ...attrs }: IFavoriteCard) =>
                                 variant='not_pressed'
                                 size='medium'
                             >
-                                {mapPointIcon} Маршрут
+                                <Icon icon={mapPointIcon} /> Маршрут
                             </Button>
                         </>
                     )}

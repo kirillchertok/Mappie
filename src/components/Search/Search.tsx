@@ -9,6 +9,7 @@ import { generateId } from '@/utils/generateId';
 
 import { TypeCard } from '../TypeCard/TypeCard';
 import { Button } from '../ui/Button/Button';
+import { Icon } from '../ui/Icon/Icon';
 import { Input } from '../ui/Input/Input';
 import styles from './Search.module.css';
 
@@ -38,7 +39,7 @@ export const Search = () => {
                 onChange={changeQuery}
                 placeholder='Название места'
                 sizeType='large'
-                icon={searchIconField}
+                icon={<Icon icon={searchIconField} />}
             />
             <div className={styles.container}>
                 <div>
@@ -68,7 +69,7 @@ export const Search = () => {
                     onClick={getPlaces}
                     variant='not_pressed'
                 >
-                    {searchIconNotPressed}
+                    <Icon icon={searchIconNotPressed} />
                 </Button>
             </div>
         </>

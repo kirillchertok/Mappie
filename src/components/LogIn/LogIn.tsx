@@ -101,7 +101,7 @@ export const LogIn = () => {
                         size='large'
                         backgroundColor='red'
                     >
-                        {currentOption ? 'Войти' : 'Зарегестрироваться'}
+                        {currentOption ? 'Войти' : 'Зарегистрироваться'}
                     </Button>
                     {authError && <span className={styles.errors}>{authError}</span>}
                 </form>

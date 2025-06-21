@@ -5,7 +5,7 @@ import { OSRM_API_URL } from '@/api/api';
 import type { OSRMResponse } from '@/types/IResponses';
 import type { IConvertRouteInfoReturn } from '@/types/IUtils/IConvertRouteInfo';
 import { convertLat } from '@/utils/convertLat';
-import { convertRouteIndo } from '@/utils/convertRouteInfo';
+import { convertRouteInfo } from '@/utils/convertRouteInfo';
 
 export class RouteService {
     public static async getRouteInof(
@@ -26,7 +26,7 @@ export class RouteService {
             const distance = response.data.routes[0].distance;
             const duration = response.data.routes[0].duration;
 
-            return convertRouteIndo({ distance, duration });
+            return convertRouteInfo({ distance, duration });
         } catch (error) {
             console.log(error);
             return [];

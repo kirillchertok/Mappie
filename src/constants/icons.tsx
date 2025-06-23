@@ -27,11 +27,11 @@ const logInIconNotPressed = <FaUser color='white' />;
 
 const logInIconPressed = <FaUser color='black' />;
 
-const arrowLeftIcon = <IoMdArrowDropleft color='white' />;
+const arrowLeftIcon = <IoMdArrowDropleft color='var(--font-color-black)' />;
 
-const arrowRightIcon = <IoMdArrowDropright color='black' />;
+const arrowRightIcon = <IoMdArrowDropright color='var(--font-color-black)' />;
 
-const mapPointIcon = <FaMapMarkerAlt color='rgba(94, 123, 199, 1)' />;
+const mapPointIcon = <FaMapMarkerAlt color='white' />;
 
 const darkThemeIcon = <FaMoon color='black' />;
 

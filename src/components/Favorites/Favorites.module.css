@@ -10,3 +10,8 @@
     justify-content: center;
     align-items: flex-start;
 }
+
+.container h1,
+.favorites h2 {
+    color: var(--font-color-black);
+}

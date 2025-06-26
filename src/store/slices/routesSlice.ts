@@ -21,7 +21,9 @@ const RoutesSlice = createSlice({
 
         removeRoute: (state, action: PayloadAction<IRoute>) => {
             state.routes = state.routes.filter(
-                route => route.start === action.payload.start && route.end === action.payload.end
+                r =>
+                    `${r.startName} ${r.endName}` !==
+                    `${action.payload.startName} ${action.payload.endName}`
             );
         },
     },

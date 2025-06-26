@@ -2,7 +2,7 @@ import PlacesService from '@/services/placesService';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { setIsLoading } from '@/store/slices/appSlice';
 import { setFilteredPLaces, setPlaces, setRadius } from '@/store/slices/placeSlice';
-import { convertLat } from '@/utils/convertLat';
+import { convertLeafletExpr } from '@/utils/convertLeafletExpr';
 
 export const useSearch = () => {
     const dispatch = useAppDispatch();
@@ -20,7 +20,7 @@ export const useSearch = () => {
     };
 
     const getPlaces = async () => {
-        const { lat, lon } = convertLat(coordinates);
+        const { lat, lon } = convertLeafletExpr(coordinates);
         dispatch(setIsLoading(true));
         const places = await PlacesService.getPlaces(lat, lon, radius, types);
         if (places) {

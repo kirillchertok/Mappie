@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
+import { useRoute } from '@/hooks/useGetRoute';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { closeRoute } from '@/store/slices/routeSlice';
 import { addRoute, removeRoute } from '@/store/slices/routesSlice';
@@ -12,11 +13,16 @@ export const RouteInfo = () => {
 
     const isLoading = useAppSelector(state => state.app.isLoading);
     const route = useAppSelector(state => state.route);
-    const routes = useAppSelector(state => state.routes.routes);
 
-    const [isSaved, setIsSaved] = useState<boolean>(
-        routes.filter(route => route.route === route.route).length >= 1
-    );
+    const { compareRoute } = useRoute();
+
+    const [isSaved, setIsSaved] = useState<boolean>(false);
+
+    useEffect(() => {
+        if (route.isActive) {
+            setIsSaved(compareRoute(route));
+        }
+    }, [route, compareRoute]);
 
     const isActive = route.isActive;
     const duration = route.duration;

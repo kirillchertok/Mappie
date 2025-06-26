@@ -1,4 +1,4 @@
-import { convertLat } from '../convertLat';
+import { convertLat } from '../convertLeafletExpr';
 
 describe('convertLat', () => {
     it('Правильно преобразует массив координат', () => {

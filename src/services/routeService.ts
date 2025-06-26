@@ -4,7 +4,7 @@ import type { LatLngExpression } from 'leaflet';
 import { OSRM_API_URL } from '@/api/api';
 import type { OSRMResponse } from '@/types/IResponses';
 import type { IConvertRouteInfoReturn } from '@/types/IUtils/IConvertRouteInfo';
-import { convertLat } from '@/utils/convertLat';
+import { convertLeafletExpr } from '@/utils/convertLeafletExpr';
 import { convertRouteInfo } from '@/utils/convertRouteInfo';
 
 export class RouteService {
@@ -13,11 +13,11 @@ export class RouteService {
         end: LatLngExpression
     ): Promise<IConvertRouteInfoReturn[]> {
         try {
-            const latS = convertLat(start).lat;
-            const lonS = convertLat(start).lon;
+            const latS = convertLeafletExpr(start).lat;
+            const lonS = convertLeafletExpr(start).lon;
 
-            const latE = convertLat(end).lat;
-            const lonE = convertLat(end).lon;
+            const latE = convertLeafletExpr(end).lat;
+            const lonE = convertLeafletExpr(end).lon;
 
             const url = `${OSRM_API_URL}/${lonS},${latS};${lonE},${latE}`;
 

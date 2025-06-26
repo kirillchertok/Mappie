@@ -8,7 +8,7 @@ import {
     mapPointIcon,
 } from '@/constants/icons';
 import { PLACE_TYPES } from '@/constants/placeTypes';
-import { useGetRoute } from '@/hooks/useGetRoute';
+import { useRoute } from '@/hooks/useGetRoute';
 import { usePanelActions } from '@/hooks/usePanelActions';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { addFavorite, removeFavorite, selectFavorite } from '@/store/slices/favoritesSlice';
@@ -25,7 +25,7 @@ export const FavoriteCard = ({ variant, placeData, ...attrs }: IFavoriteCard) =>
     const userCoordinates = useAppSelector(state => state.place.userCoordinates);
 
     const { buttonClick } = usePanelActions();
-    const { getRoute } = useGetRoute();
+    const { getRoute } = useRoute();
 
     const [isFavorite, setIsFavorite] = useState<boolean>(true);
 

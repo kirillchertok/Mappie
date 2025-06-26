@@ -1,8 +1,8 @@
-import { convertLat } from '../convertLat';
+import { convertLeafletExpr } from '../convertLeafletExpr';
 
-describe('convertLat', () => {
+describe('convertLeafletExpr', () => {
     it('Правильно преобразует массив координат', () => {
-        const result = convertLat([52.52, 13.405]);
+        const result = convertLeafletExpr([52.52, 13.405]);
         expect(result).toEqual({
             lat: 52.52,
             lon: 13.405,
@@ -10,10 +10,10 @@ describe('convertLat', () => {
     });
 
     it('Правильно обрабатывает нулевые координаты', () => {
-        expect(convertLat([0, 0])).toEqual({ lat: 0, lon: 0 });
+        expect(convertLeafletExpr([0, 0])).toEqual({ lat: 0, lon: 0 });
     });
 
     it('Правильно обрабатывает отрицательные координаты', () => {
-        expect(convertLat([-52.52, -13.405])).toEqual({ lat: -52.52, lon: -13.405 });
+        expect(convertLeafletExpr([-52.52, -13.405])).toEqual({ lat: -52.52, lon: -13.405 });
     });
 });

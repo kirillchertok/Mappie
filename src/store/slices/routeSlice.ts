@@ -35,6 +35,10 @@ const RouteSlice = createSlice({
             state.isActive = action.payload;
         },
 
+        // setId: (state, action: PayloadAction<string | undefined>) => {
+        //     state.id = action.payload;
+        // },
+
         setStart: (state, action: PayloadAction<LatLngExpression>) => {
             state.start = action.payload;
         },
@@ -81,7 +85,7 @@ const RouteSlice = createSlice({
             state.end = undefined;
             state.route = undefined;
             state.duration = undefined;
-            state.duration = undefined;
+            state.distance = undefined;
         },
     },
 });

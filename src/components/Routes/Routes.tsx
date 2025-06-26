@@ -1,4 +1,5 @@
 import { useAppSelector } from '@/store/hooks';
+import { generateId } from '@/utils/generateId';
 
 import { RouteCard } from '../RouteCard/RouteCard';
 import styles from './Routes.module.css';
@@ -13,7 +14,10 @@ export const Routes = () => {
                 {routes.length > 0 ? (
                     <>
                         {routes.map(route => (
-                            <RouteCard data={route} />
+                            <RouteCard
+                                key={generateId()}
+                                data={route}
+                            />
                         ))}
                     </>
                 ) : (

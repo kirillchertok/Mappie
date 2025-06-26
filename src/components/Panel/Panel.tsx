@@ -5,7 +5,7 @@ import { deselectFavorite } from '@/store/slices/favoritesSlice';
 
 import { Button } from '../ui/Button/Button';
 import { Icon } from '../ui/Icon/Icon';
-import { CurrentPanel } from './CurrentPanel';
+import { CurrentPanel } from './CurrentPanel/CurrentPanel';
 import styles from './Panel.module.css';
 
 export const Panel = () => {

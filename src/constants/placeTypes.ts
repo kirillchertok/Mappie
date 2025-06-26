@@ -5,7 +5,7 @@ export const PLACE_TYPES: Array<IPlaceType> = [
         name: 'Природа',
         normalizedName: 'nature',
         img: {
-            src: '/src/assets/images/placeTypes/nature.png',
+            src: '/nature.png',
             alt: 'Nature type icon',
         },
     },
@@ -13,7 +13,7 @@ export const PLACE_TYPES: Array<IPlaceType> = [
         name: 'Культура',
         normalizedName: 'culture',
         img: {
-            src: '/src/assets/images/placeTypes/culture.png',
+            src: '/culture.png',
             alt: 'Culture type icon',
         },
     },
@@ -21,7 +21,7 @@ export const PLACE_TYPES: Array<IPlaceType> = [
         name: 'История',
         normalizedName: 'history',
         img: {
-            src: '/src/assets/images/placeTypes/history.png',
+            src: '/history.png',
             alt: 'Histoty type icon',
         },
     },
@@ -29,7 +29,7 @@ export const PLACE_TYPES: Array<IPlaceType> = [
         name: 'Религия',
         normalizedName: 'religion',
         img: {
-            src: '/src/assets/images/placeTypes/religion.png',
+            src: '/religion.png',
             alt: 'Religion type icon',
         },
     },
@@ -37,7 +37,7 @@ export const PLACE_TYPES: Array<IPlaceType> = [
         name: 'Архитектура',
         normalizedName: 'architecture',
         img: {
-            src: '/src/assets/images/placeTypes/architecture.png',
+            src: '/architecture.png',
             alt: 'Architecture type icon',
         },
     },
@@ -45,7 +45,7 @@ export const PLACE_TYPES: Array<IPlaceType> = [
         name: 'Индустриальные объекты',
         normalizedName: 'industrial',
         img: {
-            src: '/src/assets/images/placeTypes/industrial.png',
+            src: '/industrial.png',
             alt: 'Industrial type icon',
         },
     },
@@ -53,7 +53,7 @@ export const PLACE_TYPES: Array<IPlaceType> = [
         name: 'Развлечения',
         normalizedName: 'entertainment',
         img: {
-            src: '/src/assets/images/placeTypes/entertainment.png',
+            src: '/entertainment.png',
             alt: 'Entertainment type icon',
         },
     },
@@ -61,7 +61,7 @@ export const PLACE_TYPES: Array<IPlaceType> = [
         name: 'Спорт',
         normalizedName: 'sport',
         img: {
-            src: '/src/assets/images/placeTypes/sport.png',
+            src: '/sport.png',
             alt: 'Sport type icon',
         },
     },
@@ -69,7 +69,7 @@ export const PLACE_TYPES: Array<IPlaceType> = [
         name: 'Транспорт',
         normalizedName: 'transport',
         img: {
-            src: '/src/assets/images/placeTypes/transport.png',
+            src: '/transport.png',
             alt: 'Transport type icon',
         },
     },
@@ -77,7 +77,7 @@ export const PLACE_TYPES: Array<IPlaceType> = [
         name: 'Заправка',
         normalizedName: 'filling_station',
         img: {
-            src: '/src/assets/images/placeTypes/filling_station.png',
+            src: '/filling_station.png',
             alt: 'Filling station type icon',
         },
     },
@@ -85,7 +85,7 @@ export const PLACE_TYPES: Array<IPlaceType> = [
         name: 'Магазин',
         normalizedName: 'shop',
         img: {
-            src: '/src/assets/images/placeTypes/shop.png',
+            src: '/shop.png',
             alt: 'Shop type icon',
         },
     },
@@ -93,7 +93,7 @@ export const PLACE_TYPES: Array<IPlaceType> = [
         name: 'Еда',
         normalizedName: 'food',
         img: {
-            src: '/src/assets/images/placeTypes/food.png',
+            src: '/food.png',
             alt: 'Food type icon',
         },
     },
@@ -101,7 +101,7 @@ export const PLACE_TYPES: Array<IPlaceType> = [
         name: 'Банк',
         normalizedName: 'bank',
         img: {
-            src: '/src/assets/images/placeTypes/bank.png',
+            src: '/bank.png',
             alt: 'Bank type icon',
         },
     },

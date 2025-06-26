@@ -4,7 +4,7 @@ import { Marker, Popup } from 'react-leaflet';
 
 import { favoritesIconNotPressed, favoritesIconPressed, mapPointIcon } from '@/constants/icons';
 import { PLACE_TYPES } from '@/constants/placeTypes';
-import { useGetRoute } from '@/hooks/useGetRoute';
+import { useRoute } from '@/hooks/useGetRoute';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { addFavorite, removeFavorite } from '@/store/slices/favoritesSlice';
 import type { IPlaceMarker } from '@/types/IComponents/IPlaceMarker';
@@ -18,7 +18,7 @@ export const PlaceMarker = ({ data }: IPlaceMarker) => {
     const favorites = useAppSelector(state => state.favorites.favorites);
     const userCoordinates = useAppSelector(state => state.place.userCoordinates);
 
-    const { getRoute } = useGetRoute();
+    const { getRoute } = useRoute();
 
     const [isFavorite, setIsFavorite] = useState<boolean>(favorites.includes(data));
 

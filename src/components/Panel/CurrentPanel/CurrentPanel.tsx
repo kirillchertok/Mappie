@@ -1,9 +1,8 @@
+import { Favorites } from '@/components/Favorites/Favorites';
+import { Routes } from '@/components/Routes/Routes';
+import { Search } from '@/components/Search/Search';
+import { SelectedFavorite } from '@/components/SelectedFavorite/SelectedFavorite';
 import { useAppSelector } from '@/store/hooks';
-
-import { Favorites } from '../Favorites/Favorites';
-import { Routes } from '../Routes/Routes';
-import { Search } from '../Search/Search';
-import { SelectedFavorite } from '../SelectedFavorite/SelectedFavorite';
 
 export const CurrentPanel = () => {
     const currentPanel = useAppSelector(state => state.panel.currentPanel);

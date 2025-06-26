@@ -8,7 +8,7 @@ import { useMap } from 'react-leaflet';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { setIsLoading } from '@/store/slices/appSlice';
 import { setEndName, setRoute, setStartName } from '@/store/slices/routeSlice';
-import { convertLat } from '@/utils/convertLat';
+import { convertLeafletExpr } from '@/utils/convertLeafletExpr';
 
 export const Routing = () => {
     const map = useMap();
@@ -44,14 +44,14 @@ export const Routing = () => {
             const coordinates = route.coordinates.map((coord: L.LatLng) => [coord.lat, coord.lng]);
 
             dispatch(setRoute(coordinates));
-            const startLat = convertLat(start).lat;
-            const startLon = convertLat(start).lon;
+            const startLat = convertLeafletExpr(start).lat;
+            const startLon = convertLeafletExpr(start).lon;
             const startName = places.find(
                 place => place.lat === startLat && place.lon === startLon
             )?.name;
 
-            const endLat = convertLat(end).lat;
-            const endLon = convertLat(end).lon;
+            const endLat = convertLeafletExpr(end).lat;
+            const endLon = convertLeafletExpr(end).lon;
             const endName = places.find(
                 place => place.lat === endLat && place.lon === endLon
             )?.name;

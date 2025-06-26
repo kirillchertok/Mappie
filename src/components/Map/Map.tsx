@@ -36,7 +36,7 @@ export const Map = ({ zoom = 16, scrollWheelZoom = true }: IMap) => {
                     <Marker
                         position={userCoordinates}
                         icon={L.icon({
-                            iconUrl: '/src/assets/images/user_location.png',
+                            iconUrl: '/user_location.png',
                             iconSize: [25, 25],
                         })}
                     >

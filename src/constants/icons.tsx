@@ -15,7 +15,7 @@ const searchIconNotPressed = <FaSearch color='white' />;
 
 const searchIconPressed = <FaSearch color='rgba(94, 123, 199, 1)' />;
 
-const searchIconField = <FaSearch color='gray)' />;
+const searchIconField = <FaSearch color='gray' />;
 
 const favoritesIconNotPressed = <FaBookmark color='white' />;
 

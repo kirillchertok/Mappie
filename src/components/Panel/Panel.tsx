@@ -42,7 +42,7 @@ export const Panel = () => {
                         ]
                     }`}
                 >
-                    <CurrentPanel />
+                    <CurrentPanel currentPanel={currentPanel} />
                 </div>
                 <div
                     className={styles.close}

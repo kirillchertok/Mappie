@@ -2,11 +2,13 @@ import { Favorites } from '@/components/Favorites/Favorites';
 import { Routes } from '@/components/Routes/Routes';
 import { Search } from '@/components/Search/Search';
 import { SelectedFavorite } from '@/components/SelectedFavorite/SelectedFavorite';
-import { useAppSelector } from '@/store/hooks';
+import type { PanelType } from '@/types/IStore/IPanelSlice';
 
-export const CurrentPanel = () => {
-    const currentPanel = useAppSelector(state => state.panel.currentPanel);
+interface ICurrentPanel {
+    currentPanel: PanelType;
+}
 
+export const CurrentPanel = ({ currentPanel }: ICurrentPanel) => {
     switch (currentPanel) {
         case 'all_favorites':
             return <Favorites />;

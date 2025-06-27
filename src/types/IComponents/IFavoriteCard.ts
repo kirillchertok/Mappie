@@ -6,5 +6,5 @@ type Variant = 'small' | 'large';
 
 export interface IFavoriteCard extends HTMLAttributes<HTMLElement> {
     variant: Variant;
-    placeData: IPlace;
+    data: IPlace;
 }

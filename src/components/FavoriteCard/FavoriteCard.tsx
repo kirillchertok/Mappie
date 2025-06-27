@@ -1,5 +1,4 @@
 import type { LatLngExpression } from 'leaflet';
-import { useState } from 'react';
 
 import {
     arrowRightIcon,
@@ -10,6 +9,7 @@ import {
 import { PLACE_TYPES } from '@/constants/placeTypes';
 import { useRoute } from '@/hooks/useGetRoute';
 import { usePanelActions } from '@/hooks/usePanelActions';
+import { useSave } from '@/hooks/useSave';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { addFavorite, removeFavorite, selectFavorite } from '@/store/slices/favoritesSlice';
 import type { IFavoriteCard } from '@/types/IComponents/IFavoriteCard';
@@ -19,38 +19,29 @@ import { Button } from '../ui/Button/Button';
 import { Icon } from '../ui/Icon/Icon';
 import styles from './FavoriteCard.module.css';
 
-export const FavoriteCard = ({ variant, placeData, ...attrs }: IFavoriteCard) => {
+export const FavoriteCard = ({ variant, data, ...attrs }: IFavoriteCard) => {
     const dispatch = useAppDispatch();
 
     const userCoordinates = useAppSelector(state => state.place.userCoordinates);
 
     const { buttonClick } = usePanelActions();
     const { getRoute } = useRoute();
+    const { changeState, isSaved } = useSave({
+        save: () => dispatch(addFavorite(data)),
+        unsave: () => dispatch(removeFavorite(data)),
+    });
 
-    const [isFavorite, setIsFavorite] = useState<boolean>(true);
-
-    const types = PLACE_TYPES.filter(type => placeData.type.includes(type.normalizedName)).slice(
-        0,
-        2
-    );
+    const types = PLACE_TYPES.filter(type => data.type.includes(type.normalizedName)).slice(0, 2);
 
     const goToFavorite = () => {
-        dispatch(selectFavorite(placeData));
+        dispatch(selectFavorite(data));
         buttonClick('single_favorite');
     };
 
-    const favoriteCLick = () => {
-        if (isFavorite) {
-            dispatch(removeFavorite(placeData));
-        } else {
-            dispatch(addFavorite(placeData));
-        }
-
-        setIsFavorite(prev => !prev);
-    };
+    const favoriteCLick = () => changeState();
 
     const routeClick = async () =>
-        await getRoute(userCoordinates, [placeData.lat, placeData.lon] as LatLngExpression);
+        await getRoute(userCoordinates, [data.lat, data.lon] as LatLngExpression);
 
     return (
         <>
@@ -68,8 +59,8 @@ export const FavoriteCard = ({ variant, placeData, ...attrs }: IFavoriteCard) =>
                             >
                                 <img
                                     className={styles.img}
-                                    src={placeData.img.length === 0 ? '/logo.png' : placeData.img}
-                                    alt={placeData.name}
+                                    src={data.img.length === 0 ? '/logo.png' : data.img}
+                                    alt={data.name}
                                 />
                                 <div className={`${styles.types} ${styles[`types--${variant}`]}`}>
                                     {types.map(type => (
@@ -98,8 +89,8 @@ export const FavoriteCard = ({ variant, placeData, ...attrs }: IFavoriteCard) =>
                             >
                                 <img
                                     className={styles.img}
-                                    src={placeData.img.length === 0 ? '/logo.png' : placeData.img}
-                                    alt={placeData.name}
+                                    src={data.img.length === 0 ? '/logo.png' : data.img}
+                                    alt={data.name}
                                 />
                             </div>
                             <div className={`${styles.types} ${styles[`types--${variant}`]}`}>
@@ -121,11 +112,11 @@ export const FavoriteCard = ({ variant, placeData, ...attrs }: IFavoriteCard) =>
                         </>
                     )}
                     <span className={`${styles.name} ${styles[`name--${variant}`]}`}>
-                        {placeData.name}
+                        {data.name}
                     </span>
                 </div>
                 <span className={`${styles.description} ${styles[`description--${variant}`]}`}>
-                    {placeData.description ?? 'Для этого места нет описания'}
+                    {data.description ?? 'Для этого места нет описания'}
                 </span>
                 <div className={`${styles.buttons} ${styles[`buttons--${variant}`]}`}>
                     {variant === 'small' ? (
@@ -143,12 +134,12 @@ export const FavoriteCard = ({ variant, placeData, ...attrs }: IFavoriteCard) =>
                     ) : (
                         <>
                             <Button
-                                variant={isFavorite ? 'pressed' : 'not_pressed'}
+                                variant={isSaved ? 'pressed' : 'not_pressed'}
                                 size='medium'
                                 backgroundColor='red'
                                 onClick={favoriteCLick}
                             >
-                                {isFavorite ? (
+                                {isSaved ? (
                                     <>
                                         <Icon icon={favoritesIconPressed} /> Сохранено
                                     </>

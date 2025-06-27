@@ -36,7 +36,7 @@ export const SelectedFavorite = () => {
             {selectedFavorite && (
                 <FavoriteCard
                     variant='large'
-                    placeData={selectedFavorite}
+                    data={selectedFavorite}
                 />
             )}
         </>

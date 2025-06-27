@@ -1,10 +1,10 @@
 import L, { type LatLngExpression } from 'leaflet';
-import { useState } from 'react';
 import { Marker, Popup } from 'react-leaflet';
 
 import { favoritesIconNotPressed, favoritesIconPressed, mapPointIcon } from '@/constants/icons';
 import { PLACE_TYPES } from '@/constants/placeTypes';
 import { useRoute } from '@/hooks/useGetRoute';
+import { useSave } from '@/hooks/useSave';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { addFavorite, removeFavorite } from '@/store/slices/favoritesSlice';
 import type { IPlaceMarker } from '@/types/IComponents/IPlaceMarker';
@@ -15,25 +15,18 @@ import styles from './PlaceMarker.module.css';
 
 export const PlaceMarker = ({ data }: IPlaceMarker) => {
     const dispatch = useAppDispatch();
-    const favorites = useAppSelector(state => state.favorites.favorites);
     const userCoordinates = useAppSelector(state => state.place.userCoordinates);
 
     const { getRoute } = useRoute();
-
-    const [isFavorite, setIsFavorite] = useState<boolean>(favorites.includes(data));
+    const { changeState, isSaved } = useSave({
+        save: () => dispatch(addFavorite(data)),
+        unsave: () => dispatch(removeFavorite(data)),
+    });
 
     const placeCoordinates: LatLngExpression = [data.lat, data.lon];
-    const types = PLACE_TYPES.filter(type => data.type.includes(type.normalizedName));
+    const types = PLACE_TYPES.filter(type => data.type.includes(type.normalizedName)).slice(0, 2);
 
-    const favoriteClick = () => {
-        if (isFavorite) {
-            dispatch(removeFavorite(data));
-        } else {
-            dispatch(addFavorite(data));
-        }
-
-        setIsFavorite(prev => !prev);
-    };
+    const favoriteClick = () => changeState();
 
     const routeCLick = async () => await getRoute(userCoordinates, placeCoordinates);
 
@@ -61,12 +54,12 @@ export const PlaceMarker = ({ data }: IPlaceMarker) => {
                         </span>
                         <div className={styles.buttons}>
                             <Button
-                                variant={isFavorite ? 'pressed' : 'not_pressed'}
+                                variant={isSaved ? 'pressed' : 'not_pressed'}
                                 size='default'
                                 backgroundColor='red'
                                 onClick={favoriteClick}
                             >
-                                {isFavorite ? (
+                                {isSaved ? (
                                     <Icon icon={favoritesIconPressed} />
                                 ) : (
                                     <Icon icon={favoritesIconNotPressed} />

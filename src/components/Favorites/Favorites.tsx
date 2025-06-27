@@ -43,7 +43,7 @@ export const Favorites = () => {
                                 <FavoriteCard
                                     key={placeData.id}
                                     variant='small'
-                                    placeData={placeData}
+                                    data={placeData}
                                 />
                             ))}
                         </>

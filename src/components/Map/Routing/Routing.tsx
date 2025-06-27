@@ -8,7 +8,7 @@ import { useMap } from 'react-leaflet';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { setIsLoading } from '@/store/slices/appSlice';
 import { setEndName, setRoute, setStartName } from '@/store/slices/routeSlice';
-import { convertLeafletExpr } from '@/utils/convertLeafletExpr';
+import { getPlaceName } from '@/utils/getPlaceName';
 
 export const Routing = () => {
     const map = useMap();
@@ -40,23 +40,15 @@ export const Routing = () => {
 
         routingControl.on('routesfound', e => {
             dispatch(setIsLoading(false));
-            const route = e.routes[0];
-            const coordinates = route.coordinates.map((coord: L.LatLng) => [coord.lat, coord.lng]);
 
+            const coordinates = e.routes[0].coordinates.map((coord: L.LatLng) => [
+                coord.lat,
+                coord.lng,
+            ]);
             dispatch(setRoute(coordinates));
-            const startLat = convertLeafletExpr(start).lat;
-            const startLon = convertLeafletExpr(start).lon;
-            const startName = places.find(
-                place => place.lat === startLat && place.lon === startLon
-            )?.name;
 
-            const endLat = convertLeafletExpr(end).lat;
-            const endLon = convertLeafletExpr(end).lon;
-            const endName = places.find(
-                place => place.lat === endLat && place.lon === endLon
-            )?.name;
-            dispatch(setStartName(startName ?? start.toString()));
-            dispatch(setEndName(endName ?? end.toString()));
+            dispatch(setStartName(getPlaceName(start, places)));
+            dispatch(setEndName(getPlaceName(end, places)));
         });
 
         routingControl.on('routingerror', () => {

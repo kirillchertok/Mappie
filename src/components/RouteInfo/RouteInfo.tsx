@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 import { useRoute } from '@/hooks/useGetRoute';
+import { useSave } from '@/hooks/useSave';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { closeRoute } from '@/store/slices/routeSlice';
 import { addRoute, removeRoute } from '@/store/slices/routesSlice';
@@ -15,50 +16,40 @@ export const RouteInfo = () => {
     const route = useAppSelector(state => state.route);
 
     const { compareRoute } = useRoute();
-
-    const [isSaved, setIsSaved] = useState<boolean>(false);
+    const { changeState, isSaved, setIsSaved } = useSave({
+        save: () => dispatch(addRoute(route)),
+        unsave: () => dispatch(removeRoute(route)),
+    });
 
     useEffect(() => {
         if (route.isActive) {
             setIsSaved(compareRoute(route));
         }
-    }, [route, compareRoute]);
-
-    const isActive = route.isActive;
-    const duration = route.duration;
-    const distance = route.distance;
+    }, [route, compareRoute, setIsSaved]);
 
     const close = () => dispatch(closeRoute());
-    const saveClick = () => {
-        if (isSaved) {
-            dispatch(removeRoute(route));
-        } else {
-            dispatch(addRoute(route));
-        }
-
-        setIsSaved(prev => !prev);
-    };
+    const saveClick = () => changeState();
 
     return (
         <>
             <div
                 className={`${styles.container} ${
-                    styles[`container--${isActive && !isLoading ? 'open' : 'closed'}`]
+                    styles[`container--${route.isActive && !isLoading ? 'open' : 'closed'}`]
                 }`}
             >
                 <div className={styles.info}>
                     <div className={styles.info__block}>
-                        {distance && (
+                        {route.distance && (
                             <span className={styles.value}>
-                                {distance.value} {distance.unitOfMeasurement}
+                                {route.distance.value} {route.distance.unitOfMeasurement}
                             </span>
                         )}
                         <span className={styles.description}>дистанция</span>
                     </div>
                     <div className={styles.info__block}>
-                        {duration && (
+                        {route.duration && (
                             <span className={styles.value}>
-                                {duration.value} {duration.unitOfMeasurement}
+                                {route.duration.value} {route.duration.unitOfMeasurement}
                             </span>
                         )}
                         <span className={styles.description}>примерное время</span>

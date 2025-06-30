@@ -1,6 +1,6 @@
 @import './variables.css';
-@import './themes/dark.css';
-@import './themes/light.css';
+@import '@/styles/themes/dark.css';
+@import '@/styles/themes/light.css';
 
 * {
     box-sizing: var(--box-sizing-base);

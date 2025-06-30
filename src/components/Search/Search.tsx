@@ -5,7 +5,7 @@ import { PLACE_TYPES } from '@/constants/placeTypes';
 import { useSearch } from '@/hooks/useSearch';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { setFilteredPLaces } from '@/store/slices/placeSlice';
-import { generateId } from '@/utils/generateId';
+import type { IPlaceType } from '@/types/IPlaceType';
 
 import { TypeCard } from '../TypeCard/TypeCard';
 import { Button } from '../ui/Button/Button';
@@ -23,6 +23,9 @@ export const Search = () => {
     const { changeRadius, getPlaces } = useSearch();
 
     const changeQuery = (e: React.ChangeEvent<HTMLInputElement>) => setQuery(e.target.value);
+
+    const checkSelected = (type: IPlaceType) =>
+        types.filter(typeTmp => typeTmp.normalizedName === type.normalizedName).length > 0;
 
     useEffect(() => {
         if (query === '') {
@@ -47,13 +50,9 @@ export const Search = () => {
                     <div className={styles.types}>
                         {PLACE_TYPES.map(type => (
                             <TypeCard
-                                key={generateId()}
+                                key={type.name}
                                 type={type}
-                                isSelected={
-                                    types.filter(
-                                        typeTmp => typeTmp.normalizedName === type.normalizedName
-                                    ).length > 0
-                                }
+                                isSelected={checkSelected(type)}
                             />
                         ))}
                     </div>

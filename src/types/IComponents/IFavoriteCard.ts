@@ -2,7 +2,7 @@ import type { HTMLAttributes } from 'react';
 
 import type { IPlace } from '../IPlace';
 
-type Variant = 'small' | 'large';
+export type Variant = 'small' | 'large';
 
 export interface IFavoriteCard extends HTMLAttributes<HTMLElement> {
     variant: Variant;

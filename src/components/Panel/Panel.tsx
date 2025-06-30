@@ -1,4 +1,5 @@
 import { arrowLeftIcon } from '@/constants/icons';
+import { PanelVariant } from '@/constants/variants';
 import { usePanelActions } from '@/hooks/usePanelActions';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { deselectFavorite } from '@/store/slices/favoritesSlice';
@@ -16,7 +17,7 @@ export const Panel = () => {
     const { closePanel } = usePanelActions();
 
     const close = () => {
-        if (currentPanel === 'single_favorite') {
+        if (currentPanel === PanelVariant.SINGLE_FAVORITE) {
             dispatch(deselectFavorite());
         }
         closePanel();
@@ -28,14 +29,19 @@ export const Panel = () => {
                 className={`${styles.container} ${
                     styles[`container--${isOpen ? 'open' : 'closed'}`]
                 } ${
-                    styles[`container--${currentPanel === 'single_favorite' ? 'large' : 'default'}`]
+                    styles[
+                        `container--${
+                            currentPanel === PanelVariant.SINGLE_FAVORITE ? 'large' : 'default'
+                        }`
+                    ]
                 }`}
             >
                 <div
                     className={`${styles.panel} ${
                         styles[
                             `panel--${
-                                currentPanel === 'all_favorites' || currentPanel === 'routes'
+                                currentPanel === PanelVariant.ALL_FAVORITES ||
+                                currentPanel === PanelVariant.ROUTES
                                     ? 'overflow'
                                     : 'no_overflow'
                             }`

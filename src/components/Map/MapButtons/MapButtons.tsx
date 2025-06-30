@@ -22,30 +22,33 @@ export const MapButtons = () => {
     };
     const clearMap = () => dispatch(setPlaces([]));
 
+    const btns = [
+        {
+            onCLick: plusZoom,
+            icon: plusIcon,
+        },
+        {
+            onCLick: minusZoom,
+            icon: minusIcon,
+        },
+        {
+            onCLick: locationClick,
+            icon: locationIcon,
+        },
+    ];
+
     return (
         <>
             <div className={styles.buttons}>
-                <Button
-                    backgroundColor='gray'
-                    variant='not_pressed'
-                    onClick={plusZoom}
-                >
-                    <Icon icon={plusIcon} />
-                </Button>
-                <Button
-                    backgroundColor='gray'
-                    variant='not_pressed'
-                    onClick={minusZoom}
-                >
-                    <Icon icon={minusIcon} />
-                </Button>
-                <Button
-                    backgroundColor='gray'
-                    variant='not_pressed'
-                    onClick={locationClick}
-                >
-                    <Icon icon={locationIcon} />
-                </Button>
+                {btns.map(btn => (
+                    <Button
+                        variant='not_pressed'
+                        backgroundColor='gray'
+                        onClick={btn.onCLick}
+                    >
+                        <Icon icon={btn.icon} />
+                    </Button>
+                ))}
                 <Button
                     size='medium'
                     backgroundColor='red'

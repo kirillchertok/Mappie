@@ -2,12 +2,12 @@ import L, { type LatLngExpression } from 'leaflet';
 import { Marker, Popup } from 'react-leaflet';
 
 import { favoritesIconNotPressed, favoritesIconPressed, mapPointIcon } from '@/constants/icons';
-import { PLACE_TYPES } from '@/constants/placeTypes';
 import { useRoute } from '@/hooks/useGetRoute';
 import { useSave } from '@/hooks/useSave';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { addFavorite, removeFavorite } from '@/store/slices/favoritesSlice';
 import type { IPlaceMarker } from '@/types/IComponents/IPlaceMarker';
+import { filterPlaceTypes } from '@/utils/filterPlaceTypes';
 
 import { Button } from '../ui/Button/Button';
 import { Icon } from '../ui/Icon/Icon';
@@ -24,7 +24,7 @@ export const PlaceMarker = ({ data }: IPlaceMarker) => {
     });
 
     const placeCoordinates: LatLngExpression = [data.lat, data.lon];
-    const types = PLACE_TYPES.filter(type => data.type.includes(type.normalizedName)).slice(0, 2);
+    const types = filterPlaceTypes(data.type);
 
     const favoriteClick = () => changeState();
 

@@ -8,6 +8,7 @@ import { useMap } from 'react-leaflet';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { setIsLoading } from '@/store/slices/appSlice';
 import { setEndName, setRoute, setStartName } from '@/store/slices/routeSlice';
+import { createRoutingControl } from '@/utils/creatingRoutingControl';
 import { getPlaceName } from '@/utils/getPlaceName';
 
 export const Routing = () => {
@@ -22,21 +23,7 @@ export const Routing = () => {
 
         dispatch(setIsLoading(true));
 
-        const routingControl = L.Routing.control({
-            waypoints: [L.latLng(start), L.latLng(end)],
-            routeWhileDragging: true,
-            addWaypoints: false,
-            waypointMode: 'connect',
-            lineOptions: {
-                styles: [{ color: 'blue', weight: 5 }],
-                extendToWaypoints: true,
-                missingRouteTolerance: 0.1,
-                addWaypoints: false,
-            },
-            show: false,
-            //@ts-expect-error Works, but TS said that there is no such function createMarker ))
-            createMarker: () => null,
-        }).addTo(map);
+        const routingControl = createRoutingControl({ start, end, map });
 
         routingControl.on('routesfound', e => {
             dispatch(setIsLoading(false));

@@ -2,8 +2,8 @@ import { useState } from 'react';
 
 import type { IUseSave } from '@/types/IHooks/IUseSave';
 
-export const useSave = ({ save, unsave }: IUseSave) => {
-    const [isSaved, setIsSaved] = useState<boolean>(true);
+export const useSave = ({ inital = false, save, unsave }: IUseSave) => {
+    const [isSaved, setIsSaved] = useState<boolean>(inital);
 
     const changeState = () => {
         if (isSaved) {

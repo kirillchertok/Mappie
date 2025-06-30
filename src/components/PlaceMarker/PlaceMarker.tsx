@@ -21,6 +21,7 @@ export const PlaceMarker = ({ data }: IPlaceMarker) => {
     const { changeState, isSaved } = useSave({
         save: () => dispatch(addFavorite(data)),
         unsave: () => dispatch(removeFavorite(data)),
+        inital: false,
     });
 
     const placeCoordinates: LatLngExpression = [data.lat, data.lon];

@@ -19,6 +19,7 @@ export const RouteInfo = () => {
     const { changeState, isSaved, setIsSaved } = useSave({
         save: () => dispatch(addRoute(route)),
         unsave: () => dispatch(removeRoute(route)),
+        inital: false,
     });
 
     useEffect(() => {
